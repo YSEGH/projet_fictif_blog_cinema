@@ -1,0 +1,113 @@
+/*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+
+html {
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+body{
+margin: 0;
+padding: 0;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+li{
+list-style-type: none;
+}
+li a {
+color: black;
+}
+/**
+SECTION HEADER
+*/
+.section-banniere{
+position: relative;
+height: 80vh;
+background-color: GhostWhite;
+width: 100vw;
+}
+.section-banniere-video{
+height: 80vh;
+width: 50vw;
+overflow: hidden;
+background-color: cadetblue;
+}
+.section-banniere-video .header-video{
+height: 100%;
+margin: auto;
+
+}
+.section-banniere .section-banniere-presentation{
+background-color: white;
+z-index: 1000;
+width: 35rem;
+}
+.section-banniere .section-banniere-presentation h1{
+margin: 0;
+}
+
+/**
+SECTION NEWS
+*/
+.section-news{
+height: auto;
+width: 100vw;
+background-color: white;
+}
+.card{
+height: auto;
+width: 22rem;
+}
+.card-header{
+overflow: hidden;
+background-size: cover;
+background-position: center;
+height: 22rem;
+width: 22rem;
+}
+/**
+SECTION PROGRAMME
+*/
+.section-program{
+background-color: GhostWhite;
+height: auto;
+width: 100vw;
+}
+.section-program .film{
+overflow: hidden;
+background-size: cover;
+background-position: center;
+height: 25rem;
+width: 30rem;
+}
+
+/**
+SECTION INFOS
+*/
+
+.section-infos{
+  height: 100vh;
+  width: 100vw;
+}
+.section-infos .section-infos-map{
+  height: 80vh;
+  width: 50vw;
+}
+.section-infos .section-infos-infos{
+  height: 80vh;
+  width: 50vw;
+
+}
+.section-infos .section-infos-infos p{
+  padding-right: 5rem;
+
+}
+
+.section-footer{
+height: 30vh;
+background-color: GhostWhite;
+}
