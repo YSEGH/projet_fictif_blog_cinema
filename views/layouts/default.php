@@ -21,9 +21,9 @@
             <div class="collapse ml-auto" id="navbarToggleExternalContent">
               <div class="d-flex justify-content-end p-4 bg-transparent">
                 <ul>
-                    <li><a class="btn btn-dark rounded-0 font-weight-lighter" href="">Lorem ipsum</a></li>
-                    <li><a class="btn btn-dark rounded-0 font-weight-lighter" href="">Lorem ipsum</a></li>
-                    <li><a class="btn btn-dark rounded-0 font-weight-lighter" href="">Lorem ipsum</a></li>
+                    <li><a class="btn btn-dark rounded-0 font-weight-lighter" href="<?= $router->generate('home') ?>">Accueil</a></li>
+                    <li><a class="btn btn-dark rounded-0 font-weight-lighter" href="<?= $router->generate('news') ?>">Actualités</a></li>
+                    <li><a class="btn btn-dark rounded-0 font-weight-lighter" href="<?= $router->generate('movies') ?>">Films</a></li>
                     <li><a class="btn btn-dark rounded-0 font-weight-lighter" href="">Lorem ipsum</a></li>
                     <li><a class="btn btn-dark rounded-0 font-weight-lighter" href="">Lorem ipsum</a></li>
                 </ul>
@@ -32,7 +32,10 @@
           </div>
         </header>
 
-        <?= $content ?>
+
+        <?= $content ?>        
+
+
 
         <footer id="section" class="section-footer mt-auto d-flex justify-content-around align-items-center">
             <?php if(defined('DEBUG_TIME')): ?>
@@ -61,10 +64,11 @@
             </ul>
         </footer>
 
-        <script src="http://localhost:8000/js/map_style.js"></script>
-        <script src="http://localhost:8000/js/map.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzSwfs1pICcdHq1glTuTDqLqxljH7jdTM&callback=initMap_1&map_ids=168c94dbe1fb00b3"></script>
+        <script src="http://localhost:8000/js/main.js"></script>
+        <script src="http://localhost:8000/js/map_style.js"></script>
+        <script src="http://localhost:8000/js/map.js"></script>
     </body>
 </html>

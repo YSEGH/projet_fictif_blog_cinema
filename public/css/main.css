@@ -11,6 +11,8 @@ html {
 body{
 margin: 0;
 padding: 0;
+height: auto;
+min-height: 100vh;
 }
 body::-webkit-scrollbar {
   display: none;
@@ -39,7 +41,6 @@ background-color: cadetblue;
 .section-banniere-video .header-video{
 height: 100%;
 margin: auto;
-
 }
 .section-banniere .section-banniere-presentation{
 background-color: white;
@@ -53,16 +54,16 @@ margin: 0;
 /**
 SECTION NEWS
 */
-.section-news{
+.section-news-home{
 height: auto;
 width: 100vw;
 background-color: white;
 }
-.card{
+.card-home{
 height: auto;
 width: 22rem;
 }
-.card-header{
+.card-header-home{
 overflow: hidden;
 background-size: cover;
 background-position: center;
@@ -72,12 +73,12 @@ width: 22rem;
 /**
 SECTION PROGRAMME
 */
-.section-program{
+.section-programme-home{
 background-color: GhostWhite;
 height: auto;
 width: 100vw;
 }
-.section-program .film{
+.section-programme-home .film{
 overflow: hidden;
 background-size: cover;
 background-position: center;
@@ -110,4 +111,56 @@ SECTION INFOS
 .section-footer{
 height: 30vh;
 background-color: GhostWhite;
+}
+
+
+/** PROGRAMME PAGE */
+.section-movies-movies{
+  min-height: 100vh;
+  width: 100vw;
+  height: auto;
+}
+.movies-container{
+  height: auto;
+  width: auto;
+}
+.movies-container-photo{
+overflow: hidden;
+background-size: cover;
+background-position: center;  
+}
+
+/** ACTUALITE PAGE */
+.section-news-news{
+  min-height: 100vh;
+  width: 100vw;
+  height: auto;
+}
+.card-actualite{
+  height: auto;
+  width: auto;
+}
+.card-header-actualite{
+overflow: hidden;
+background-size: cover;
+background-position: center;
+height: 15rem;
+width: 15rem;
+}
+
+
+/** SECTION MOVIEPAGE */
+
+.section-moviePage-photo{
+overflow: hidden;
+background-size: cover;
+background-position: center; 
+}
+
+/** SECTION NEWSPAGE */
+
+.section-newsPage-photo{
+overflow: hidden;
+background-size: cover;
+background-position: center; 
 }

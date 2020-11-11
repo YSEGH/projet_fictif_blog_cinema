@@ -20,10 +20,17 @@ class Router {
         return $this;
     }
 
+    public function url($query){
+        $route = $this->router->generate($query);
+        return $route;
+    }
+
     public function run()
     {
         $match = $this->router->match();
         $view = $match['target'];
+        $router = $this->router;
+        $params = $match['params'];
         ob_start();
         require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';
         $content = ob_get_clean();

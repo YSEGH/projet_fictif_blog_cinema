@@ -17,9 +17,9 @@
   </div>
 </section>
 
-<section id="section" class="section-news d-flex align-items-center justify-content-center py-5 my-5">
-  <div class="card mx-2 border-0">
-    <div class="card-header p-0 rounded-0" style="background-image: url(http://localhost:8000/img/nuit.jpg);"></div>
+<section id="section" class="section-news-home d-flex align-items-center justify-content-center py-5 my-5">
+  <div class="card-home mx-2 border-0">
+    <div class="card-header-home p-0 rounded-0" style="background-image: url(http://localhost:8000/img/nuit.jpg);"></div>
     <div class="card-body my-4">
       <p class="text-uppercase font-weight-normal text-dark">Nouveau <span class="font-weight-lighter">text</span></p>
       <p class="text-justify font-weight-light text-dark">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
@@ -29,8 +29,8 @@
       <button class="btn btn-dark rounded-0 my-3 ml-auto font-weight-lighter">En savoir plus</button>
     </div>
   </div>
-  <div class="card mx-2 border-0">
-    <div class="card-header p-0 rounded-0" style="background-image: url(http://localhost:8000/img/nuit.jpg);"></div>
+  <div class="card-home mx-2 border-0">
+    <div class="card-header-home p-0 rounded-0" style="background-image: url(http://localhost:8000/img/nuit.jpg);"></div>
     <div class="card-body my-4">
       <p class="text-uppercase font-weight-normal text-dark">Nouveau <span class="font-weight-lighter">text</span></p>
       <p class="text-justify font-weight-light text-dark">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
@@ -40,8 +40,8 @@
       <button class="btn btn-dark rounded-0 my-3 ml-auto font-weight-lighter">En savoir plus</button>
     </div>
   </div>
-  <div class="card mx-2 border-0">
-    <div class="card-header p-0 rounded-0" style="background-image: url(http://localhost:8000/img/nuit.jpg);"></div>
+  <div class="card-home mx-2 border-0">
+    <div class="card-header-home p-0 rounded-0" style="background-image: url(http://localhost:8000/img/nuit.jpg);"></div>
     <div class="card-body my-4">
       <p class="text-uppercase font-weight-normal text-dark">Nouveau <span class="font-weight-lighter">text</span></p>
       <p class="text-justify font-weight-light text-dark">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
@@ -53,7 +53,7 @@
   </div>
 </section>
 
-<section id="section" class="section-program d-flex flex-column py-5 my-5">
+<section id="section" class="section-programme-home d-flex flex-column py-5 my-5">
   <div class="program-films d-flex flex-wrap justify-content-center align-items-center p-4">
     <div class="film m-4" style="background-image: url(http://localhost:8000/img/seule.jpg);"></div>
     <div class="film m-4" style="background-image: url(http://localhost:8000/img/jardin.jpg);"></div>

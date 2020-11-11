@@ -1,0 +1,21 @@
+{
+    "name": "lfdpa/youssef",
+    "description": "festival des films de plein air",
+    "authors": [
+        {
+            "name": "Youssef Segh",
+            "email": "youssef.segh@hotmail.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\" : "src/"
+        }
+    },
+    "require": {
+        "fzaninotto/faker": "^1.9",
+        "altorouter/altorouter": "^2.0",
+        "symfony/var-dumper": "^5.1",
+        "filp/whoops": "^2.9"
+    }
+}
