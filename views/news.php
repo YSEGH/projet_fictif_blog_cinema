@@ -3,10 +3,28 @@
 use App\Classe\Data\DataHelper;
 use App\Classe\Post\Post;
 
+if ((int)$_GET['page'] === 1) {
+    header('Location: ' . $router->generate('news'));
+}
+
+$currentPage = (int)($_GET['page'] ?? 1) ?: 1;
+if($currentPage == 0){
+    throw new Exception('Le numéro de page est invalide.');
+}
+
 $title = "Actualités";
 define('PER_PAGE', 6);
 $data = new DataHelper;
-$posts = $data->recupTable('post', PER_PAGE, null, Post::class);
+$count = $data->countData('post');
+$pages = ceil($count / PER_PAGE);
+
+if($currentPage > $pages){
+    throw new Exception('Cette page n\'existe pas.');
+}
+
+$offset = PER_PAGE * ($currentPage - 1);
+
+$posts = $data->recupTable('post', PER_PAGE, $offset, Post::class);
 
 ?>
 
@@ -24,5 +42,15 @@ $posts = $data->recupTable('post', PER_PAGE, null, Post::class);
             </div>
         </div>
         <?php endforeach ?> 
+    </div>
+    <div class="section-movies-buttonsPage d-flex justify-content-between my-5">
+        <?php if ($currentPage < $pages) : ?>
+            <a href="<?= $router->generate('news') ?>?page=<?= $currentPage + 1 ?>" class="btn btn-dark font-weight-lighter rounded-0 m-1" >Page suivante</a>
+        <?php endif ?> 
+        <?php if ($currentPage > 1) : ?>
+            <?php $link = $router->generate('news');?>
+            <?php if ($currentPage > 2) $link .= '?page=' . ($currentPage - 1); ?>
+            <a href="<?= $link ?>" class="btn btn-dark font-weight-lighter rounded-0 m-1" >Page précédente</a>
+        <?php endif ?>           
     </div>
 </section>

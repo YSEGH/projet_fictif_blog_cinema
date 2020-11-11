@@ -3,7 +3,6 @@
 use App\Classe\Data\DataHelper;
 use App\Classe\Post\Post;
 
-var_dump($params['slug']);
 $data = new DataHelper;
 $post = $data->recupRow('post', 'id', $params['id'], Post::class);
 $title = $post->title;

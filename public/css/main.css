@@ -23,6 +23,10 @@ list-style-type: none;
 li a {
 color: black;
 }
+.icon-site{
+  height: 4rem;
+  width: 4rem;
+}
 /**
 SECTION HEADER
 */
@@ -150,7 +154,9 @@ width: 15rem;
 
 
 /** SECTION MOVIEPAGE */
-
+.section-moviePage-infos{
+background-color: GhostWhite;
+}
 .section-moviePage-photo{
 overflow: hidden;
 background-size: cover;

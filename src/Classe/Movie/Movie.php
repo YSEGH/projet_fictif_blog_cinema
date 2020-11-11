@@ -20,4 +20,18 @@ class Movie {
         return new DateTime($this->created_at);
     }
 
+    public function displayModal($movie)
+    {
+        return <<<HTML
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h1>{$movie->name}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+HTML;
+    }
 }

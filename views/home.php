@@ -7,7 +7,7 @@
     <video class="header-video" src="http://localhost:8000/video/movie.mp4" type="video/mp4" playsinline autoplay muted loop></video>
   </div>
   <div class="section-banniere-presentation p-5 mr-auto">
-    <h1 class="text-uppercase text-dark font-weight-light"> Les films de plein air </h1>
+    <h1 class="text-uppercase bg-warning text-dark font-weight-light"> Les films de plein air </h1>
     <h3 class="text-uppercase  text-muted font-weight-lighter my-3"> 1ère édition </h3>
     <p class="text-justify font-weight-light text-dark"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus dolorem ipsam expedita non adipisci ut doloribus dolores eligendi qui, explicabo reiciendis maiores quis obcaecati amet velit, molestias, voluptatibus nemo laborum.</p>
     <div class="section-banniere-button">

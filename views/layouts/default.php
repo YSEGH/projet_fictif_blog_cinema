@@ -10,10 +10,10 @@
       <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
     </head>
     <body class="d-flex flex-column min-vh-100">
-
         <header id="section" class="section-header">
           <div class="fixed-top">
-            <nav class="navbar navbar-light bg-transparent">
+            <nav class="navbar navbar-light bg-transparent d-flex align-items-center">
+              <a href="<?= $router->generate('home') ?>" class="icon-site bg-warning mt-2"></a>
               <button class="navbar-toggler border-secondary bg-transparent text-dark ml-auto " type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -32,10 +32,7 @@
           </div>
         </header>
 
-
         <?= $content ?>        
-
-
 
         <footer id="section" class="section-footer mt-auto d-flex justify-content-around align-items-center">
             <?php if(defined('DEBUG_TIME')): ?>

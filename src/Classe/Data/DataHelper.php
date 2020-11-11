@@ -40,9 +40,23 @@ class DataHelper {
         return $data;
     }
 
+    public function countData($tableName){
+        $statement = $this->pdo->prepare("SELECT COUNT(id) FROM $tableName");
+        $statement->execute();
+        $count = $statement -> fetch(PDO::FETCH_NUM)[0];  
+        return (int)$count;
+    }
 
 
-    public function many($movie){
+    public function many($query){
+        $statement = $this->pdo->prepare($query);
+        $statement->execute();
+        $data = $statement -> fetchAll(PDO::FETCH_OBJ);  
+        return $data;
+    }
+
+    /*     
+    public function many($tableNameMany, $tableJoin, $onQuery, $onResult, $whereQuery, $whereResult){
         $query = "
                 SELECT * 
                 FROM movie_has_moviecategory 
@@ -53,5 +67,5 @@ class DataHelper {
         $statement->execute();
         $data = $statement -> fetchAll(PDO::FETCH_OBJ);  
         return $data;
-    }
+    } */
 }
