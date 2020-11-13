@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="Fr">
     <head>
@@ -9,7 +13,7 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
       <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
     </head>
-    <body class="d-flex flex-column min-vh-100">
+    <body class="d-flex flex-column min-vh-100 justify-content-around align-items-center m-0 p-0">
         <header id="section" class="section-header">
           <div class="fixed-top">
             <nav class="navbar navbar-light bg-transparent d-flex align-items-center">
@@ -21,20 +25,37 @@
             <div class="collapse ml-auto" id="navbarToggleExternalContent">
               <div class="d-flex justify-content-end p-4 bg-transparent">
                 <ul>
-                    <li><a class="btn btn-dark rounded-0 font-weight-lighter" href="<?= $router->generate('home') ?>">Accueil</a></li>
-                    <li><a class="btn btn-dark rounded-0 font-weight-lighter" href="<?= $router->generate('news') ?>">Actualités</a></li>
-                    <li><a class="btn btn-dark rounded-0 font-weight-lighter" href="<?= $router->generate('movies') ?>">Films</a></li>
-                    <li><a class="btn btn-dark rounded-0 font-weight-lighter" href="">Lorem ipsum</a></li>
-                    <li><a class="btn btn-dark rounded-0 font-weight-lighter" href="">Lorem ipsum</a></li>
+                    <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('home') ?>">Accueil</a></li>
+                    <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('news') ?>">Actualités</a></li>
+                    <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('movies') ?>">Films</a></li>
+                    <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="">Lorem ipsum</a></li>
+                    <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="">Lorem ipsum</a></li>
+                    <?php if (isset($_SESSION['auth'])) : ?>
+                    <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('dashboard') ?>">Tableau de bord</a></li>
+                    <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('disconnect') ?>">Me déconnecter</a></li>
+                    <?php endif ?>
                 </ul>
               </div>
             </div>
           </div>
         </header>
 
-        <?= $content ?>        
-
-        <footer id="section" class="section-footer mt-auto d-flex justify-content-around align-items-center">
+        <div class="container-body w-100 m-0 p-0 <?php if (isset($_SESSION['auth']) && strpos($_SERVER['REQUEST_URI'], 'dashboard') !== FALSE) : ?> d-flex justify-content-around align-items-center m-0 min-vh-100<?php endif ?>">
+          <?php if (isset($_SESSION['auth']) && strpos($_SERVER['REQUEST_URI'], 'dashboard') !== FALSE) : ?>
+          <div class="mr-3 mx-auto w-30 d-flex align-items-center">
+            <ul class="w-100 mx-auto p-0">
+                <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('dashboard') ?>">Tableau de bord</a></li>
+                <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('posts_gestion') ?>">Gestion des articles</a></li>
+                <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('movies_gestion') ?>">Gestion des films</a></li>
+                <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="">Newsletter</a></li>
+                <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="">Mise à jour infos</a></li>
+            </ul>         
+          </div> 
+          <?php endif ?>
+          <?= $content ?> 
+        </div>
+                
+        <footer id="section" class="section-footer w-100 mt-auto d-flex justify-content-around align-items-center">
             <?php if(defined('DEBUG_TIME')): ?>
                 <?= "Page générée en " . round(1000 * (microtime(true) - DEBUG_TIME)) . " ms" ?>
             <?php endif ?>

@@ -20,6 +20,12 @@ class Router {
         return $this;
     }
 
+    public function post(string $url, string $view, ?string $name = null)
+    {
+        $this->router->map('GET | POST', $url, $view, $name);
+        return $this;
+    }
+
     public function url($query){
         $route = $this->router->generate($query);
         return $route;
@@ -35,8 +41,6 @@ class Router {
         require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';
         $content = ob_get_clean();
         require $this->viewPath . DIRECTORY_SEPARATOR . 'layouts/default.php';
-        
         return $this;
-
     }
 }

@@ -16,9 +16,9 @@ if($params['slug'] !== $movie->slug) {
 
 ?>
 
-<div class="section-moviePage container my-5">
-    <h1 class=""><?= $movie->name ?></h1>
-    <div class="section-moviePage-content d-flex p-5">
+<div class="section-moviePage container d-flex flex-column align-items-center justify-content-center my-5 p-5 w-100">
+    <h1 class="align-self-start"><?= $movie->name ?></h1>
+    <div class="section-moviePage-content d-flex pl-5 my-2 w-100">
         <div class="section-moviePage-infos w-25 p-2" style="height: auto;">
             <div class="section-moviePage-photo bg-dark w-100" style="height: 10rem; background-image:url(<?= $movie->photo ?>)"></div>
             <div class="d-flex flex-column w-100 justify-content-center" style="height: 10rem;">

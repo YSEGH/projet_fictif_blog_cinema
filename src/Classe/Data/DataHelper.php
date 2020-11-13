@@ -15,6 +15,19 @@ class DataHelper {
                             ]);
     }
 
+    public function recupData($prepare, $execute, $className){
+        $statement = $this->pdo->prepare($prepare);
+        $statement->execute($execute);
+        $data = $statement -> fetchAll(PDO::FETCH_CLASS, $className);  
+        return $data;
+    }
+
+    public function dataAction($prepare, $execute){
+        $statement = $this->pdo->prepare($prepare);
+        $statement->execute($execute);
+    }
+
+
     public function recupTable($tableName, $limit, $offset, $className){
         $query = "SELECT * FROM $tableName";
         if($limit !== null){

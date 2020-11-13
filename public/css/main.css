@@ -17,6 +17,7 @@ min-height: 100vh;
 body::-webkit-scrollbar {
   display: none;
 }
+
 li{
 list-style-type: none;
 }
@@ -33,7 +34,6 @@ SECTION HEADER
 .section-banniere{
 position: relative;
 height: 80vh;
-background-color: GhostWhite;
 width: 100vw;
 }
 .section-banniere-video{
@@ -108,12 +108,12 @@ SECTION INFOS
 
 }
 .section-infos .section-infos-infos p{
-  padding-right: 5rem;
+  padding-right: 3rem;
 
 }
 
 .section-footer{
-height: 30vh;
+height: 25vh;
 background-color: GhostWhite;
 }
 
@@ -154,6 +154,10 @@ width: 15rem;
 
 
 /** SECTION MOVIEPAGE */
+.section-moviePage{
+  width: 100vw;
+  height: auto;  
+}
 .section-moviePage-infos{
 background-color: GhostWhite;
 }
@@ -164,9 +168,18 @@ background-position: center;
 }
 
 /** SECTION NEWSPAGE */
-
+.section-newsPage{
+  width: 100vw;
+  height: auto;  
+}
+.section-newsPage-infos{
+background-color: GhostWhite;
+}
 .section-newsPage-photo{
 overflow: hidden;
 background-size: cover;
 background-position: center; 
+}
+.container-body{
+  margin: 0%;
 }

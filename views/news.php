@@ -24,12 +24,14 @@ if($currentPage > $pages){
 
 $offset = PER_PAGE * ($currentPage - 1);
 
-$posts = $data->recupTable('post', PER_PAGE, $offset, Post::class);
+/* $posts = $data->recupTable('post', PER_PAGE, $offset, Post::class); */
+
+$posts = Post::getAllPosts(PER_PAGE, $offset);
 
 ?>
 
-<section class="section-news-news container my-5">
-    <h1 class="mt-5 mb-3">Actualités</h1>
+<section class="section-news-news container d-flex flex-column align-items-center justify-content-center my-5">
+    <h1 class="mt-5 mb-3 align-self-start text-uppercase text-dark font-weight-normal">Actualités</h1>
     <div class="cards-actualite d-flex flex-wrap justify-content-around p-3">
         <?php foreach($posts as $post) : ?> 
         <div class="card-actualite w-25 mx-1 border-0">
@@ -43,14 +45,14 @@ $posts = $data->recupTable('post', PER_PAGE, $offset, Post::class);
         </div>
         <?php endforeach ?> 
     </div>
-    <div class="section-movies-buttonsPage d-flex justify-content-between my-5">
-        <?php if ($currentPage < $pages) : ?>
-            <a href="<?= $router->generate('news') ?>?page=<?= $currentPage + 1 ?>" class="btn btn-dark font-weight-lighter rounded-0 m-1" >Page suivante</a>
-        <?php endif ?> 
+    <div class="section-movies-buttonsPage d-flex justify-content-between my-5 w-100">
         <?php if ($currentPage > 1) : ?>
             <?php $link = $router->generate('news');?>
             <?php if ($currentPage > 2) $link .= '?page=' . ($currentPage - 1); ?>
             <a href="<?= $link ?>" class="btn btn-dark font-weight-lighter rounded-0 m-1" >Page précédente</a>
-        <?php endif ?>           
+        <?php endif ?>  
+        <?php if ($currentPage < $pages) : ?>
+            <a href="<?= $router->generate('news') ?>?page=<?= $currentPage + 1 ?>" class="btn btn-dark font-weight-lighter rounded-0 m-1 ml-auto" >Page suivante</a>
+        <?php endif ?> 
     </div>
 </section>
