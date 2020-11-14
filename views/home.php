@@ -1,5 +1,12 @@
 <?php
-  $title = "Accueil"
+session_start();
+use App\Classe\Movie\Movie;
+use App\Classe\Post\Post;
+
+$title = "Accueil";
+
+$posts_homepage = Post::getHomepagePosts();
+$movies_homepage = Movie::getHomepageMovies();
 ?>
 
 <section class="section-banniere d-flex justify-content-center align-items-center">
@@ -17,48 +24,17 @@
   </div>
 </section>
 
-<section id="section" class="section-news-home d-flex align-items-center justify-content-center py-5 my-5">
-  <div class="card-home mx-2 border-0">
-    <div class="card-header-home p-0 rounded-0" style="background-image: url(http://localhost:8000/img/nuit.jpg);"></div>
-    <div class="card-body my-4">
-      <p class="text-uppercase font-weight-normal text-dark">Nouveau <span class="font-weight-lighter">text</span></p>
-      <p class="text-justify font-weight-light text-dark">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-          Nemo laborum iusto suscipit cum sapiente consequuntur enim. Sint, totam. 
-          Doloribus voluptatum molestias, porro a tempora perferendis nulla quas autem placeat voluptate!
-      </p>  
-      <button class="btn btn-dark rounded-0 my-3 ml-auto font-weight-lighter">En savoir plus</button>
-    </div>
-  </div>
-  <div class="card-home mx-2 border-0">
-    <div class="card-header-home p-0 rounded-0" style="background-image: url(http://localhost:8000/img/nuit.jpg);"></div>
-    <div class="card-body my-4">
-      <p class="text-uppercase font-weight-normal text-dark">Nouveau <span class="font-weight-lighter">text</span></p>
-      <p class="text-justify font-weight-light text-dark">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-          Nemo laborum iusto suscipit cum sapiente consequuntur enim. Sint, totam. 
-          Doloribus voluptatum molestias, porro a tempora perferendis nulla quas autem placeat voluptate!
-      </p>  
-      <button class="btn btn-dark rounded-0 my-3 ml-auto font-weight-lighter">En savoir plus</button>
-    </div>
-  </div>
-  <div class="card-home mx-2 border-0">
-    <div class="card-header-home p-0 rounded-0" style="background-image: url(http://localhost:8000/img/nuit.jpg);"></div>
-    <div class="card-body my-4">
-      <p class="text-uppercase font-weight-normal text-dark">Nouveau <span class="font-weight-lighter">text</span></p>
-      <p class="text-justify font-weight-light text-dark">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-          Nemo laborum iusto suscipit cum sapiente consequuntur enim. Sint, totam. 
-          Doloribus voluptatum molestias, porro a tempora perferendis nulla quas autem placeat voluptate!
-      </p>  
-      <button class="btn btn-dark rounded-0 my-3 ml-auto font-weight-lighter">En savoir plus</button>
-    </div>
-  </div>
+<section id="section" class="section-news-home d-flex align-items-start justify-content-center py-5 my-5">
+  <?php foreach($posts_homepage as $post_homepage) : ?>
+      <?php require 'admin/homepage/post_card.php'?>
+  <?php endforeach ?>
 </section>
 
 <section id="section" class="section-programme-home d-flex flex-column py-5 my-5">
   <div class="program-films d-flex flex-wrap justify-content-center align-items-center p-4">
-    <div class="film m-4" style="background-image: url(http://localhost:8000/img/seule.jpg);"><div class="mask-film h-100 w-100 d-flex flex-column justify-content-center align-items-center"><h1 class="text-uppercase font-weight-bold text-white my-auto">En bas</h1></div></div>
-    <div class="film m-4" style="background-image: url(http://localhost:8000/img/jardin.jpg);"></div>
-    <div class="film m-4" style="background-image: url(http://localhost:8000/img/droite.jpg);"></div>
-    <div class="film m-4" style="background-image: url(http://localhost:8000/img/sopalin.jpg);"></div>
+    <?php foreach($movies_homepage as $movie_homepage) : ?>
+        <?php require 'admin/homepage/movie_card.php'?>
+    <?php endforeach ?>
   </div>
   <button class="btn btn-dark rounded-0 mx-auto font-weight-lighter">Programme complet</button>
 </section>

@@ -14,7 +14,7 @@ $pdo->exec('SET FOREIGN_KEY_CHECKS = 0');
 $pdo->exec('SET FOREIGN_KEY_CHECKS = 1');
 
 
-$movies = [];
+/* $movies = [];
 $programmes = [];
 $categories = [];
 for ($i=0; $i < 25; $i++) { 
@@ -43,7 +43,7 @@ foreach($movies as $movie){
     foreach($randomProgrammes as $programme){
         $pdo->exec("INSERT INTO movie_has_programme SET movie_id=$movie, programme_id=$programme");
     }
-}
+} */
 
 //, content='{$faker->paragraph($nbSentences = 8, $variableNbSentences = true)}', place='actualité', photo='http://localhost:8000/img/nuit.jpg', created_at='{$faker->date} {$faker->time}'
 

@@ -58,6 +58,31 @@ class Movie {
         $data->dataAction($prepare, $execute);
     }
 
+
+    public static function getHomepageMovies()
+    {
+        $prepare = "SELECT * FROM movie WHERE place = :place";
+        $execute = 
+        [
+            'place' => 1
+        ];
+        $data = new DataHelper;
+        return $data->recupData($prepare, $execute, Movie::class);
+    }
+
+    public static function changePlace($id, $place)
+    {
+        $place === 1 ? $new_place = 0 : $new_place = 1;
+        $prepare = "UPDATE movie SET place = :place WHERE id = :id";
+        $execute = 
+        [
+            'id' => $id,
+            'place' => $new_place
+        ];
+        $data = new DataHelper;
+        $data->dataAction($prepare, $execute);
+    }
+
     public static function updateMovie($slug, $id, $name, $release_date, $resume, $realisator, $actor, $photo, $place)
     {
         $prepare = "UPDATE movie SET";

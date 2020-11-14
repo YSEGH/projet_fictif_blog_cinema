@@ -26,8 +26,8 @@ session_start();
               <div class="d-flex justify-content-end p-4 bg-transparent">
                 <ul>
                     <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('home') ?>">Accueil</a></li>
-                    <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('news') ?>">Actualités</a></li>
-                    <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('movies') ?>">Films</a></li>
+                    <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('posts_page') ?>">Actualités</a></li>
+                    <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('movies_page') ?>">Films</a></li>
                     <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="">Lorem ipsum</a></li>
                     <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="">Lorem ipsum</a></li>
                     <?php if (isset($_SESSION['auth'])) : ?>
@@ -40,17 +40,16 @@ session_start();
           </div>
         </header>
 
-        <div class="container-body w-100 m-0 p-0 <?php if (isset($_SESSION['auth']) && strpos($_SERVER['REQUEST_URI'], 'dashboard') !== FALSE) : ?> d-flex justify-content-around align-items-center m-0 min-vh-100<?php endif ?>">
+        <div class="container-body w-100 m-0 p-0 <?php if (isset($_SESSION['auth']) && strpos($_SERVER['REQUEST_URI'], 'dashboard') !== FALSE) : ?> d-flex flex-column justify-content-around align-items-center m-0 p-5<?php endif ?>">
           <?php if (isset($_SESSION['auth']) && strpos($_SERVER['REQUEST_URI'], 'dashboard') !== FALSE) : ?>
-          <div class="mr-3 mx-auto w-30 d-flex align-items-center">
-            <ul class="w-100 mx-auto p-0">
-                <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('dashboard') ?>">Tableau de bord</a></li>
-                <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('posts_gestion') ?>">Gestion des articles</a></li>
-                <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="<?= $router->generate('movies_gestion') ?>">Gestion des films</a></li>
-                <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="">Newsletter</a></li>
-                <li><a class="btn btn-dark rounded-0 font-weight-lighter w-100" href="">Mise à jour infos</a></li>
+            <ul class="navbar-nav w-100 mx-auto p-0 d-flex flex-row justify-content-center align-items-center mt-5">
+                <li class="nav-item"><a class="nav-link p-2 btn <?php if (strpos($_SERVER['REQUEST_URI'], 'homepage_builder') !== FALSE) : ?>btn-light border <?php else : ?> btn-dark <?php endif ?> rounded-0 font-weight-lighter w-100" href="<?= $router->generate('homepage_builder') ?>">Page d'accueil</a></li>
+                <li class="nav-item"><a class="nav-link p-2 btn <?php if (strpos($_SERVER['REQUEST_URI'], 'posts_list') !== FALSE) : ?> btn-light border <?php else : ?> btn-dark <?php endif ?> rounded-0 font-weight-lighter w-100" href="<?= $router->generate('posts_list') ?>">Liste des articles</a></li>
+                <li class="nav-item"><a class="nav-link p-2 btn <?php if (strpos($_SERVER['REQUEST_URI'], 'movies_list') !== FALSE) : ?> btn-light border <?php else : ?> btn-dark <?php endif ?> rounded-0 font-weight-lighter w-100" href="<?= $router->generate('movies_list') ?>">Liste des films</a></li>
+                <li class="nav-item"><a class="nav-link p-2 btn <?php if (strpos($_SERVER['REQUEST_URI'], 'newsletter') !== FALSE) : ?> btn-light border <?php else : ?> btn-dark <?php endif ?>  rounded-0 font-weight-lighter w-100" href="">Newsletter</a></li>
+                <li class="nav-item"><a class="nav-link p-2 btn <?php if (strpos($_SERVER['REQUEST_URI'], 'infos_generales') !== FALSE) : ?> btn-light border <?php else : ?> btn-dark <?php endif ?>  rounded-0 font-weight-lighter w-100" href="">Mise à jour infos</a></li>
+                <li class="nav-item"><a class="nav-link p-2 btn btn-dark  rounded-0 font-weight-lighter w-100" href="<?= $router->generate('disconnect') ?>">Me déconnecter</a></li>
             </ul>         
-          </div> 
           <?php endif ?>
           <?= $content ?> 
         </div>
@@ -81,7 +80,6 @@ session_start();
             <li><a href="" class="font-weight-lighter">Lorem ipsum</a></li>
             </ul>
         </footer>
-
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzSwfs1pICcdHq1glTuTDqLqxljH7jdTM&callback=initMap_1&map_ids=168c94dbe1fb00b3"></script>

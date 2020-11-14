@@ -49,6 +49,30 @@ class Post {
         $data = new DataHelper;
         $data->dataAction($prepare, $execute);
     }
+
+    public static function getHomepagePosts()
+    {
+        $prepare = "SELECT * FROM post WHERE place = :place";
+        $execute = 
+        [
+            'place' => 1
+        ];
+        $data = new DataHelper;
+        return $data->recupData($prepare, $execute, Post::class);
+    }
+
+    public static function changePlace($id, $place)
+    {
+        $place === 1 ? $new_place = 0 : $new_place = 1;
+        $prepare = "UPDATE post SET place = :place WHERE id = :id";
+        $execute = 
+        [
+            'id' => $id,
+            'place' => $new_place
+        ];
+        $data = new DataHelper;
+        $data->dataAction($prepare, $execute);
+    }
     
     public static function getPost($slug, $id)
     {
