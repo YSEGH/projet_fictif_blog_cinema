@@ -1,6 +1,9 @@
 <?php
 use App\Classe\Post\Post;
 session_start();
+if (!isset($_SESSION['auth'])) {
+    header('Location: /');
+}
 
 !empty($_POST['title']) ? $title = $_POST['title'] : $title = null;
 !empty($_POST['title']) ? $slug = str_replace(' ', '-', $title) : $slug = null;

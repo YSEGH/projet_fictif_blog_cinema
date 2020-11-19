@@ -15,6 +15,8 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
     if (!empty($auth)) {
         session_start();
         $_SESSION['auth'] = 1;
+        $_SESSION['username'] = $_POST['username'];
+        $_SESSION['password'] = $_POST['password'];
         header('Location: ' . $router->generate('dashboard'));
     } else {
         $error = "Votre nom d'utilisateur ou votre mot de passe est incorrect";

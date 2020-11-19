@@ -14,22 +14,6 @@ class myMap {
           useStaticMap: false,
           zoom: 15,
         });
-
-        const contentString =
-            '<div id="content">' +
-                '<h1 id="firstHeading" class="firstHeading">Parc Monceau</h1>' +
-            "</div>";
-        const infowindow = new google.maps.InfoWindow({
-            content: contentString,
-        });
-        const marker = new google.maps.Marker({
-            position: this.center,
-            map,
-            title: "LFDPA",
-        });
-        marker.addListener("click", () => {
-            infowindow.open(map, marker);
-        });
     }
 
 }

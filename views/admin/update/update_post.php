@@ -1,6 +1,9 @@
 <?php
 use App\Classe\Post\Post;
 session_start();
+if (!isset($_SESSION['auth'])) {
+    header('Location: /');
+}
 
 $slug = $params['slug'];
 $id = $params['id'];

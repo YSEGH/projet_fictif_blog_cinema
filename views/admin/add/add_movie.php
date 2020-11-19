@@ -1,6 +1,9 @@
 <?php
 use App\Classe\Movie\Movie;
 session_start();
+if (!isset($_SESSION['auth'])) {
+    header('Location: /');
+}
 
 !empty($_POST['name']) ? $name = $_POST['name'] : $name = null;
 !empty($_POST['name']) ? $slug = str_replace(' ', '-', $name) : $slug = null;

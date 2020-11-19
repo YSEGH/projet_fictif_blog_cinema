@@ -1,6 +1,9 @@
 <?php
 use App\Classe\Movie\Movie;
 session_start();
+if (!isset($_SESSION['auth'])) {
+    header('Location: /');
+}
 
 $slug = $params['slug'];
 $id = $params['id'];
@@ -11,10 +14,10 @@ $id = $params['id'];
 !empty($_POST['realisator']) ? $realisator = $_POST['realisator'] : $realisator = null;
 !empty($_POST['actor']) ? $actor = $_POST['actor'] : $actor = null;
 !empty($_POST['photo']) ? $photo = $_POST['photo'] : $photo = null;
-isset($_POST['place']) ? $place = 1 : $place = 0; 
 
-$_POST ? Movie::updateMovie($slug, $id, $name, $release_date, $resume, $realisator, $actor, $photo, $place) : null;
+$_POST ? Movie::updateMovie($slug, $id, $name, $release_date, $resume, $realisator, $actor, $photo) : null;
 $movie = Movie::getMovie($params['slug'], $params['id']);
+$categories = $movie->recupCategories($movie->id);
 ?>
 
 <section class="section-form container">
@@ -22,44 +25,45 @@ $movie = Movie::getMovie($params['slug'], $params['id']);
         <h1 class="text-uppercase align-self-start text-dark font-weight-light">Modifier - <?= $movie->name ?></h1>
         <form action="" method="POST" class="d-flex flex-column border w-100 p-3">
             <div class="d-flex flex-wrap justify-content-around">
-            <div class="form-group w-50 p-3 d-flex flex-column">
-                <div class="mb-2">
-                    <label for="name">Nom : </label>
-                    <input class="form-control" type="text" name="name" value="<?= $movie->name ?>">
+                <div class="form-group w-50 p-3 d-flex flex-column">
+                    <div class="mb-2">
+                        <label for="name">Nom : </label>
+                        <input class="form-control" type="text" name="name" value="<?= $movie->name ?>">
+                    </div>
+                    <div>
+                        <label for="release_date">Date de sortie : </label>
+                        <input class="form-control" type="date" name="release_date" placeholder="AAAA-MM-JJ" value="<?= $movie->release_date ?>">
+                    </div>
                 </div>
+                <div class="form-group w-50 p-3 d-flex flex-column">
+                    <div class="mb-2">
+                        <label for="realisator">Réalisateur : </label>
+                        <input class="form-control" type="text" name="realisator" value="<?= $movie->realisator ?>">
+                    </div>
+                    <div>
+                        <label for="actor">Acteur(s) : </label>
+                        <input class="form-control" type="text" name="actor" value="<?= $movie->actor ?>">
+                    </div>
+                </div>
+                <div class="form-group w-50 p-3">
+                    <label for="resume">Synopsis : </label>
+                    <textarea class="form-control" name="resume" rows="8"><?= $movie->resume ?></textarea>
+                </div>
+                <div class="form-group w-50 p-3">
+                    <label for="photo">Photo : </label>
+                    <div class="" style="background-image: url(<?= $movie->photo ?>); background-position:center; background-size: cover; height:7rem; width:7rem"></div>
+                    <input class="form-control my-2" type="text" value="<?= $movie->photo ?>">
+                    <input type="file" class="form-control-file" name="photo">
+                </div> 
+            </div>   
+            <div class="d-flex w-10 flex-column align-self-start p-3">
                 <div>
-                    <label for="release_date">Date de sortie : </label>
-                    <input class="form-control" type="date" name="release_date" placeholder="AAAA-MM-JJ" value="<?= $movie->release_date ?>">
+                <?php foreach($categories as $category) : ?>
+                    <span type="text" class="badge badge-primary font-weight-light rounded-0 mr-1 m-auto"><?= $category->name ?></span>
+                <?php endforeach ?>     
                 </div>
-            </div>
-            <div class="form-group w-50 p-3 d-flex flex-column">
-                <div class="mb-2">
-                    <label for="realisator">Réalisateur : </label>
-                    <input class="form-control" type="text" name="realisator" value="<?= $movie->realisator ?>">
-                </div>
-                <div>
-                    <label for="actor">Acteur(s) : </label>
-                    <input class="form-control" type="text" name="actor" value="<?= $movie->actor ?>">
-                </div>
-            </div>
-            <div class="form-group w-50 p-3">
-                <label for="resume">Synopsis : </label>
-                <textarea class="form-control" name="resume" rows="8"><?= $movie->resume ?></textarea>
-            </div>
-
-            <div class="form-group w-50 p-3">
-                <label for="photo">Photo : </label>
-                <div class="" style="background-image: url(<?= $movie->photo ?>); background-position:center; background-size: cover; height:7rem; width:7rem"></div>
-                <input class="form-control my-2" type="text" value="<?= $movie->photo ?>">
-                <input type="file" class="form-control-file" name="photo">
-            </div> 
-            <div class="form-check">
-                <input class="form-check-input" name="place" type="checkbox" value="<?= $movie->place ?>" id="defaultCheck1" <?php if($movie->place == 1) : ?> checked <?php endif ?>>
-                <label class="form-check-label" for="defaultCheck1">
-                    Afficher ce film sur la page d'accueil
-                </label>
-            </div>
-            </div>       
+                <a href="<?= $router->generate('update_category', ['slug' => $movie->slug, 'id' => $movie->id])?>" class="btn btn-light border font-weight-lighter rounded-0 mt-3 mx-1" >Catégories</a>
+            </div>    
             <div class="d-flex justify-content-center m-3">
                 <a href="<?= $_SESSION['LAST_URI'] ?>" class="btn btn-light border font-weight-lighter rounded-0 mt-auto mx-1" ><?php if (!empty($_POST)) : ?>Retour<?php else : ?>Annuler<?php endif ?></a>
                 <button type="submit" class="btn btn-dark font-weight-lighter rounded-0 mt-auto mx-1">Mettre à jour</button>    

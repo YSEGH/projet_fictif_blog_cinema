@@ -1,17 +1,18 @@
 <?php
-$title = "Homepage builder";
+$title = "Personnalisation page d'accueil";
 use App\Classe\Movie\Movie;
 use App\Classe\Post\Post;
 
 session_start();
-
+if (!isset($_SESSION['auth'])) {
+    header('Location: /');
+}
 $error_post = null;
 $error_movie = null;
 $count_posts_homepage = count(Post::getHomepagePosts());
-$count_movies_homepage = count(Movie::getHomepageMovies());
 if(!empty($_POST)){
     if($_POST['type'] === "post"){
-        if($_POST['query'] === "add" && ($count_posts_homepage + 1) < 4){
+        if($_POST['query'] === "add" && ($count_posts_homepage + 1) < 7){
             $error_post = null;
             Post::changePlace($_POST['id'], (int)$_POST['place']);
         } elseif($_POST['query'] === "suppr"){
@@ -21,141 +22,147 @@ if(!empty($_POST)){
             $error_post = 'Vous ne pouvez pas afficher plus de 3 articles sur la page d\'accueil !';
         }
     } elseif($_POST['type'] === "movie") {
-        if($_POST['query'] === "add" && ($count_movies_homepage + 1) < 5){
-            $error_movie = null;
-            Movie::changePlace($_POST['id'], (int)$_POST['place']);
-        } elseif($_POST['query'] === "suppr"){
-            $error_movie = null;
-            Movie::changePlace($_POST['id'], (int)$_POST['place']);           
-        } else {
-            $error_movie = 'Vous ne pouvez pas afficher plus de 4 films sur la page d\'accueil !';
-        }
+        Movie::changePlace($_POST['id'], (int)$_POST['place']);
     }
 }
 $posts_homepage = Post::getHomepagePosts();
-$movies_homepage = Movie::getHomepageMovies();
 $posts = Post::getAllPosts(null, null);
 $movies = Movie::getAllMovies(null, null);
+$movie_1 = Movie::getMovieHomepage(1)[0];
+$movie_2 = Movie::getMovieHomepage(2)[0];
+$movie_3 = Movie::getMovieHomepage(3)[0];
+$movie_4 = Movie::getMovieHomepage(4)[0];
 ?>
 
-<section class="container align-self-start my-4 w-100">
-    <div class="d-flex justify-content-between">
-        <h1 class="text-uppercase text-dark font-weight-light">Page d'accueil</h1>
-    </div>
-    <!-- RUBRIQUE POST -->
-    <div class="container d-flex flex-column justify-content-center align-items-center mt-3">
-        <h3 class="w-100 mb-3 align-self-start text-uppercase text-dark font-weight-light" style="background-color: GhostWhite;">Gestion des articles</h5>
-        <div class="mt-3 d-flex justify-content-center">
-            <?php foreach($posts_homepage as $post_homepage) : ?>
-                <?php require 'post_card.php'?>
-            <?php endforeach ?>
-        </div>        
-    </div>
-    <div class="container d-flex flex-column justify-content-center align-items-center mt-3">
-        <h5 class="mb-3 text-uppercase text-dark font-weight-light">Selectionnez les articles que vous souhaitez voir apparaitre sur la page d'accueil</h5>
-        <p class="font-weight-bold">Attention, vous ne pouvez pas ajouter plus de 3 articles</p>
-        <?php if($error_post) : ?>
-            <div class="alert alert-danger"><?= $error_post ?></div>
-        <?php endif ?>
-        <div class="border-right border-left w-75 mt-3" style="max-height:30vh; overflow:scroll">
-            <table class="table table-striped text-center" >
-                <thead>
-                    <tr>
-                        <th scope="col" class="text-left border-bottom-0" >Titre</th>
-                        <th scope="col" class="text-left border-bottom-0" >Emplacement</th>
-                        <th scope="col" class="border-bottom-0"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($posts as $post) : ?>
-                    <tr>
-                        <td class="align-middle text-truncate text-left"> <?= substr($post->title, 0, 60) . '...' ?> </td>
-                        <td class="align-middle text-truncate text-left"> <?= (int)$post->place === 1 ? "Page d'accueil" : "" ?> </td>
-                        <?php if((int)$post->place === 1) : ?>
-                            <td class="align-middle">
-                                <form action="" method="POST">
-                                    <input style="display:none" class="form-control" type="input" name="query" value="suppr">
-                                    <input style="display:none" class="form-control" type="input" name="type" value="post">
-                                    <input style="display:none" class="form-control" type="input" name="id" value="<?= $post->id ?>">
-                                    <input style="display:none" class="form-control" type="input" name="place" value="<?= (int)$post->place ?>">
-                                    <button class="btn btn-danger font-weight-lighter rounded-0" type="submit">-</button>
-                                </form>
-                            </td>
-                        <?php else : ?>
-                            <td class="align-middle">
-                                <form action="" method="POST">
-                                    <input style="display:none" class="form-control" type="input" name="query" value="add">
-                                    <input style="display:none" class="form-control" type="input" name="type" value="post">
-                                    <input style="display:none" class="form-control" type="input" name="id" value="<?= $post->id ?>">
-                                    <input style="display:none" class="form-control" type="input" name="place" value="<?= (int)$post->place ?>">
-                                    <button class="btn btn-success font-weight-lighter rounded-0" type="submit">+</button>
-                                </form>
-                            </td>
-                        <?php endif ?>  
-                    </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-        <!-- RUBRIQUE FILMS -->
-    <div class="container d-flex flex-column justify-content-center align-items-center mt-5">
-        <h3 class="w-100 mb-3 align-self-start text-uppercase text-dark font-weight-light" style="background-color: GhostWhite;">Gestion des films</h5>
-        <div class="mt-3 d-flex justify-content-center">
-            <?php foreach($movies_homepage as $movie_homepage) : ?>
-                <?php require 'movie_card.php'?>
-            <?php endforeach ?>
-        </div>        
-    </div>
-    <div class="container d-flex flex-column justify-content-center align-items-center mt-3">
-        <h5 class="text-uppercase text-dark font-weight-light mt-5">Selectionnez les films que vous souhaitez voir apparaitre sur la page d'accueil</h5>
-        <p class="font-weight-bold">Attention, vous ne pouvez pas ajouter plus de 4 films</p>
-        <?php if($error_movie) : ?>
-            <div class="alert alert-danger"><?= $error_movie ?></div>
-        <?php endif ?>
-        <div class="border-right border-left mt-3 w-75" style="max-height:30vh; overflow:scroll">
-            <table class="table table-striped text-center" >
-                <thead>
-                    <tr>
-                        <th scope="col" class="text-left border-bottom-0" >Nom</th>
-                        <th scope="col" class="text-left border-bottom-0" >Emplacement</th>
-                        <th scope="col" class="border-bottom-0"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($movies as $movie) : ?>
-                    <tr>
-                        <td class="align-middle text-truncate text-left"> <?= substr($movie->name, 0, 60) . '...' ?> </td>
-                        <td class="align-middle text-truncate text-left"> <?= (int)$movie->place === 1 ? "Page d'accueil" : "" ?> </td>
-                        <?php if((int)$movie->place === 1) : ?>
-                            <td class="align-middle">
-                                <form action="" method="POST">
-                                    <input style="display:none" class="form-control" type="input" name="query" value="suppr">
-                                    <input style="display:none" class="form-control" type="input" name="type" value="movie">
-                                    <input style="display:none" class="form-control" type="input" name="id" value="<?= $movie->id ?>">
-                                    <input style="display:none" class="form-control" type="input" name="place" value="<?= (int)$movie->place ?>">
-                                    <button class="btn btn-danger font-weight-lighter rounded-0" type="submit">-</button>
-                                </form>
-                            </td>
-                        <?php else : ?>
-                            <td class="align-middle">
-                                <form action="" method="POST">
-                                    <input style="display:none" class="form-control" type="input" name="query" value="add">
-                                    <input style="display:none" class="form-control" type="input" name="type" value="movie">
-                                    <input style="display:none" class="form-control" type="input" name="id" value="<?= $movie->id ?>">
-                                    <input style="display:none" class="form-control" type="input" name="place" value="<?= (int)$movie->place ?>">
-                                    <button class="btn btn-success font-weight-lighter rounded-0" type="submit">+</button>
-                                </form>
-                            </td>
-                        <?php endif ?>  
-                    </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
-        </div>
+<div class="row justify-content-center align-items-center mt-5" style="height: 11vh;">
+  <h3 class="text-white text-uppercase font-weight-light"><i class="fa fa-pencil-square" aria-hidden="true"></i> Personnalisation de la page d'accueil</h3>
+</div>
 
+<!-- RUBRIQUE POST -->
+<div class="row d-flex flex-column justify-content-center align-items-center mt-5">
+    <h3 class="mb-3 text-white font-weight-light">1. Gestion des articles</h5>
+    <div class="row d-flex justify-content-center align-items-center px-5">
+        <?php foreach($posts_homepage as $post) : ?>
+            <div class="card-home col-md-2 col-sm-5 mb-3">
+                <?php require 'post_card.php'?>
+            </div>
+        <?php endforeach ?>
+    </div>        
+</div>
+<div class="row d-flex flex-column justify-content-center align-items-center">
+    <h5 class="col-8 mt-4 mb-3 text-uppercase text-white text-center font-weight-light">Selectionnez les articles que vous souhaitez voir apparaitre sur la page d'accueil</h5>
+    <p class="col-8 text-white text-center font-weight-bold">Attention, vous ne pouvez pas ajouter plus de 3 articles</p>
+    <?php if($error_post) : ?>
+        <div class="alert alert-danger"><?= $error_post ?></div>
+    <?php endif ?>
+    <div class="col-12 mt-3 d-flex justify-content-center" style="max-height: 20rem; overflow-y:scroll;">
+        <table class="table table-striped text-center" style="width: 80vw;">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-auto text-white text-left border-bottom-0" >Titre</th>
+                    <th scope="col" class="col-auto text-white border-bottom-0"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($posts as $post) : ?>
+                <tr>
+                    <td class="col-auto align-middle text-white text-truncate text-left"> <?= substr($post->title, 0, 50) ?> </td>
+                    <?php if((int)$post->place === 1) : ?>
+                        <td class="col-auto align-middle">
+                            <form action="" method="POST">
+                                <input style="display:none" class="form-control" type="input" name="query" value="suppr">
+                                <input style="display:none" class="form-control" type="input" name="type" value="post">
+                                <input style="display:none" class="form-control" type="input" name="id" value="<?= $post->id ?>">
+                                <input style="display:none" class="form-control" type="input" name="place" value="<?= (int)$post->place ?>">
+                                <button class="btn btn-danger font-weight-lighter rounded-0" type="submit">-</button>
+                            </form>
+                        </td>
+                    <?php else : ?>
+                        <td class="col-auto align-middle">
+                            <form action="" method="POST">
+                                <input style="display:none" class="form-control" type="input" name="query" value="add">
+                                <input style="display:none" class="form-control" type="input" name="type" value="post">
+                                <input style="display:none" class="form-control" type="input" name="id" value="<?= $post->id ?>">
+                                <input style="display:none" class="form-control" type="input" name="place" value="<?= (int)$post->place ?>">
+                                <button class="btn btn-success font-weight-lighter rounded-0" type="submit">+</button>
+                            </form>
+                        </td>
+                    <?php endif ?>  
+                </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
     </div>
-</section>
+</div>
+
+<!-- RUBRIQUE FILMS -->
+<div class="row d-flex flex-column justify-content-center align-items-center mt-5">
+    <h3 class="mb-3 text-white font-weight-light">2. Gestion des films</h5>
+<div class="row d-flex justify-content-center align-items-center px-5">
+<div class="photo-festival row d-flex justify-content-center m-0" style="min-height:80vh; ">
+    <div class="p-3 col-md-3 col-12 photo-1 bg-primary d-flex flex-column justify-content-end align-items-start" style="background-image:url('<?= $movie_1->photo ?>');"><div class="bg-warning d-flex align-items-center justify-content-center m-auto" style="height:3rem; width: 3rem;"><h2 class="text-white m-auto">1</h2></div><h5 class="col-auto p-3 text-white text-center font-weight-normal" style="background-color: #131313;"><?= $movie_1->name ?> <span class="font-weight-lighter">- <?= $movie_1->realisator ?></span></h5></div>
+    <div class="col-md-5 col-12 d-flex flex-column justify-content-center align-items-center">    
+        <div class="p-3 h-50 w-100 photo-2 bg-warning d-flex justify-content-start align-items-start" style="background-image:url('<?= $movie_2->photo ?>');"><div class="bg-warning d-flex align-items-center justify-content-center m-auto" style="height:3rem; width: 3rem;"><h2 class="text-white m-auto">2</h2></div><h5 class="col-6 p-3 text-white text-center font-weight-normal" style="background-color: #131313;"><?= $movie_2->name ?> <br> <span class="font-weight-lighter">- <br> <?= $movie_2->realisator ?></span></h5></div>
+        <div class="p-3 h-50 w-100 photo-3 bg-danger d-flex justify-content-end align-items-end" style="background-image:url('<?= $movie_3->photo ?>');"><div class="bg-warning d-flex align-items-center justify-content-center m-auto" style="height:3rem; width: 3rem;"><h2 class="text-white m-auto">3</h2></div><h5 class="col-auto p-3 text-white text-center font-weight-normal" style="background-color: #131313;"><?= $movie_3->name ?> <br>  <span class="font-weight-lighter">-  <br> <?= $movie_3->realisator ?></span></h5></div>
+    </div>
+    <div class="p-3 col-md-3 col-12 photo-4 bg-success d-flex justify-content-end align-items-start" style="background-image:url('<?= $movie_4->photo ?>');"><div class="bg-warning d-flex align-items-center justify-content-center m-auto" style="height:3rem; width: 3rem;"><h2 class="text-white m-auto">4</h2></div><h5 class="col-6 p-3 text-white text-center font-weight-normal" style="background-color: #131313;"> <?= $movie_4->name ?> <br> <span class="font-weight-lighter">-  <br> <?= $movie_4->realisator ?></span></h5></div>
+</div>
+<div class="row d-flex flex-column justify-content-center align-items-center">
+    <h5 class="col-8 mt-4 mb-3 text-uppercase text-white text-center font-weight-light">Selectionnez les films que vous souhaitez voir apparaitre sur la page d'accueil</h5>
+    <div class="col-12 mt-3 mb-5 d-flex justify-content-center" style="max-height: 20rem; overflow-y:scroll;">
+        <table class="table table-striped text-center" style="width: 80vw;">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-auto text-white text-left border-bottom-0" >Nom</th>
+                    <th scope="col" class="col-auto text-white border-bottom-0"></th>
+                    <th scope="col" class="col-auto text-white border-bottom-0"></th>
+                    <th scope="col" class="col-auto text-white border-bottom-0"></th>
+                    <th scope="col" class="col-auto text-white border-bottom-0"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($movies as $movie) : ?>
+                <tr>
+                    <td class="col-auto align-middle text-truncate text-white text-left"> <?= substr($movie->name, 0, 50) ?> </td>
+                    <td class="col-auto align-middle text-white">
+                        <form action="" method="POST">
+                            <input style="display:none" class="form-control" type="input" name="type" value="movie">
+                            <input style="display:none" class="form-control" type="input" name="id" value="<?= $movie->id ?>">
+                            <input style="display:none" class="form-control" type="input" name="place" value="1">
+                            <button class="btn <?php if( (int)$movie->place === 1 ) : ?> btn-success <?php else : ?> btn-warning <?php endif ?> text-white font-weight-lighter rounded-0" type="submit">1</button>
+                        </form>
+                    </td>       
+                    <td class="col-auto align-middle text-white">
+                        <form action="" method="POST">
+                            <input style="display:none" class="form-control" type="input" name="type" value="movie">
+                            <input style="display:none" class="form-control" type="input" name="id" value="<?= $movie->id ?>">
+                            <input style="display:none" class="form-control" type="input" name="place" value="2">
+                            <button class="btn <?php if( (int)$movie->place === 2 ) : ?> btn-success <?php else : ?> btn-warning <?php endif ?> text-white font-weight-lighter rounded-0" type="submit">2</button>
+                        </form>
+                    </td>      
+                    <td class="col-auto align-middle text-white">
+                        <form action="" method="POST">
+                            <input style="display:none" class="form-control" type="input" name="type" value="movie">
+                            <input style="display:none" class="form-control" type="input" name="id" value="<?= $movie->id ?>">
+                            <input style="display:none" class="form-control" type="input" name="place" value="3">
+                            <button class="btn <?php if( (int)$movie->place === 3 ) : ?> btn-success <?php else : ?> btn-warning <?php endif ?> text-white font-weight-lighter rounded-0" type="submit">3</button>
+                        </form>
+                    </td>      
+                    <td class="col-auto align-middle text-white">
+                        <form action="" method="POST">
+                            <input style="display:none" class="form-control" type="input" name="type" value="movie">
+                            <input style="display:none" class="form-control" type="input" name="id" value="<?= $movie->id ?>">
+                            <input style="display:none" class="form-control" type="input" name="place" value="4">
+                            <button class="btn <?php if( (int)$movie->place === 4 ) : ?> btn-success <?php else : ?> btn-warning <?php endif ?> text-white font-weight-lighter rounded-0" type="submit">4</button>
+                        </form>
+                    </td>              
+                </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 
 

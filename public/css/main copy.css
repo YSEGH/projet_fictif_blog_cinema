@@ -1,0 +1,204 @@
+/*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+
+html {
+  background-color: #131313;
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+body{
+background-color: #131313;
+margin: 0;
+padding: 0;
+height: auto;
+min-height: 100vh;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+.row{
+  margin:0;
+}
+section{
+  margin: 0;
+  height: auto;
+}
+
+li{
+list-style-type: none;
+}
+li a {
+color: black;
+}
+.icon-site{
+  height: 4rem;
+  width: 4rem;
+}
+/**
+SECTION HEADER
+*/
+.section-banniere{
+background-color: #131313;
+position: relative;
+height: 80vh;
+width: 100vw;
+}
+.section-banniere-video{
+height: 80vh;
+width: 50vw;
+overflow: hidden;
+}
+
+.section-banniere .section-banniere-presentation{
+
+/* z-index: 1000;
+ */width: 35rem;
+}
+.section-banniere .section-banniere-presentation h1{
+margin: 0;
+}
+
+#carouselExampleSlidesOnly{
+}
+
+/**
+SECTION NEWS
+*/
+.section-news-home{
+height: auto;
+width: 100vw;
+background-color: white;
+}
+.card-home{
+height: auto;
+width: 22rem;
+}
+.card-header-home{
+overflow: hidden;
+background-size: cover;
+background-position: center;
+height: 22rem;
+width: 22rem;
+}
+/**
+SECTION PROGRAMME
+*/
+.section-programme-home{
+background-color: ghostwhite;
+height: auto;
+width: 100vw;
+}
+.section-programme-home .film{
+overflow: hidden;
+background-size: cover;
+background-position: center;
+height: 30rem;
+width: 30rem;
+}
+.section-programme-home .film .mask-film {
+background-color: black;
+opacity: 0;
+transition: opacity .25s;
+}
+.section-programme-home .film .mask-film:hover {
+opacity: 100%;
+}
+
+/**
+SECTION INFOS
+*/
+
+.section-infos{
+  height: auto;
+}
+.section-infos .section-infos-map{
+  min-height: 80vh;
+  min-width: 50vw;
+}
+.section-infos .section-infos-infos{
+  height: auto;
+}
+.section-infos .section-infos-infos p{
+
+
+}
+
+.section-footer{
+height: auto;
+min-height: 25vh;
+background-color: GhostWhite;
+}
+
+
+/** PROGRAMME PAGE */
+.section-movies-movies{
+  min-height: 100vh;
+  width: 100vw;
+  height: auto;
+}
+.movies-container{
+  height: auto;
+  width: auto;
+}
+.movies-container-photo{
+overflow: hidden;
+background-size: cover;
+background-position: center;  
+}
+
+/** ACTUALITE PAGE */
+.section-news-news{
+  min-height: 100vh;
+  width: 100vw;
+  height: auto;
+}
+.card-actualite{
+  height: auto;
+  width: auto;
+}
+.card-header-actualite{
+overflow: hidden;
+background-size: cover;
+background-position: center;
+height: 15rem;
+width: 15rem;
+}
+
+
+/** SECTION MOVIEPAGE */
+.section-moviePage{
+  width: 100vw;
+  height: auto;  
+}
+.section-moviePage-infos{
+background-color: GhostWhite;
+}
+.section-moviePage-photo{
+overflow: hidden;
+background-size: cover;
+background-position: center; 
+}
+
+/** SECTION NEWSPAGE */
+.section-newsPage{
+  width: 100vw;
+  height: auto;  
+}
+.section-newsPage-infos{
+background-color: GhostWhite;
+}
+.section-newsPage-photo{
+overflow: hidden;
+background-size: cover;
+background-position: center; 
+}
+.container-body{
+  margin: 0%;
+}
+
+.table_categories::-webkit-scrollbar {
+  display: none;
+}

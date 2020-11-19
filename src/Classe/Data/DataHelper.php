@@ -18,7 +18,7 @@ class DataHelper {
     public function recupData($prepare, $execute, $className){
         $statement = $this->pdo->prepare($prepare);
         $statement->execute($execute);
-        $data = $statement -> fetchAll(PDO::FETCH_CLASS, $className);  
+        $data = $statement -> fetchAll(PDO::FETCH_CLASS, $className); 
         return $data;
     }
 
@@ -38,7 +38,11 @@ class DataHelper {
         };
         $statement = $this->pdo->prepare($query);
         $statement->execute();
-        $data = $statement -> fetchAll(PDO::FETCH_CLASS, $className);
+        if ($className !== null) {
+            $data = $statement -> fetchAll(PDO::FETCH_CLASS, $className);
+        } else {
+            $data = $statement -> fetchAll(PDO::FETCH_OBJ);
+        }
         return $data;
     }
 
@@ -58,14 +62,6 @@ class DataHelper {
         $statement->execute();
         $count = $statement -> fetch(PDO::FETCH_NUM)[0];  
         return (int)$count;
-    }
-
-
-    public function many($query){
-        $statement = $this->pdo->prepare($query);
-        $statement->execute();
-        $data = $statement -> fetchAll(PDO::FETCH_OBJ);  
-        return $data;
     }
 
     /*     

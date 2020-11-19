@@ -27,6 +27,17 @@ class Movie {
         return $data->recupTable('movie', $per_page, $offset, Movie::class);
     }
 
+    public static function getMovieHomepage($place)
+    {
+        $prepare = "SELECT * FROM movie WHERE place = :place";
+        $execute = 
+        [
+            'place' => $place
+        ];
+        $data = new DataHelper;
+        return $data->recupData($prepare, $execute, Movie::class);
+    }
+
     public static function getMovie($slug, $id)
     {
         $prepare = "SELECT * FROM movie WHERE slug = :slug AND id = :id";
@@ -58,32 +69,31 @@ class Movie {
         $data->dataAction($prepare, $execute);
     }
 
-
-    public static function getHomepageMovies()
-    {
-        $prepare = "SELECT * FROM movie WHERE place = :place";
+    private static function deleteOldPlace($place){
+        $prepare = "UPDATE movie SET place = :oldplace WHERE place = :place";
         $execute = 
         [
-            'place' => 1
+            'oldplace' => 0,
+            'place' => $place
         ];
         $data = new DataHelper;
-        return $data->recupData($prepare, $execute, Movie::class);
+        $data->dataAction($prepare, $execute);       
     }
 
     public static function changePlace($id, $place)
     {
-        $place === 1 ? $new_place = 0 : $new_place = 1;
+        self::deleteOldPlace($place);
         $prepare = "UPDATE movie SET place = :place WHERE id = :id";
         $execute = 
         [
             'id' => $id,
-            'place' => $new_place
+            'place' => $place
         ];
         $data = new DataHelper;
         $data->dataAction($prepare, $execute);
     }
 
-    public static function updateMovie($slug, $id, $name, $release_date, $resume, $realisator, $actor, $photo, $place)
+    public static function updateMovie($slug, $id, $name, $release_date, $resume, $realisator, $actor, $photo)
     {
         $prepare = "UPDATE movie SET";
         $execute = ["slug" => $slug, "id" => $id];
@@ -117,19 +127,57 @@ class Movie {
             $executePhoto = ["photo" => "http://localhost:8000/img/" . $photo];
             $execute = array_merge($execute, $executePhoto);
         };
-        if ($place === 1) {
-            $prepare .= ", place = :place";
-            $executePlace = ["place" => 1];
-        } else { 
-            $prepare .= ", place = :place";       
-            $executePlace = ["place" => 0];    
-        };
-        $execute = array_merge($execute, $executePlace);  
         $prepare .= " WHERE slug = :slug AND id = :id";
         $data = new DataHelper;
         $data->dataAction($prepare, $execute, Movie::class);
     }
 
+    public static function addCategory($id_movie, $id_category){
+        $prepare = "INSERT INTO movie_has_moviecategory (movie_id, moviecategory_id) VALUE (:movie_id, :moviecategory_id)";
+        $execute = 
+        [
+            'movie_id' => $id_movie,
+            'moviecategory_id' => $id_category
+        ];
+        $data = new DataHelper;
+        $data->dataAction($prepare, $execute);        
+    }
+    public static function deleteCategory($id_movie, $id_category){
+        $prepare = "DELETE FROM movie_has_moviecategory WHERE movie_id = :movie_id AND moviecategory_id = :moviecategory_id";
+        $execute = 
+        [
+            'movie_id' => $id_movie,
+            'moviecategory_id' => $id_category
+        ];
+        $data = new DataHelper;
+        $data->dataAction($prepare, $execute);        
+    }
+
+    public static function recupCategories($id){
+        $prepare = "SELECT * 
+                    FROM movie_has_moviecategory 
+                    JOIN moviecategory ON movie_has_moviecategory.moviecategory_id = moviecategory.id
+                    WHERE movie_has_moviecategory.movie_id = :id";
+        $execute = 
+        [
+            'id' => $id
+        ];
+        $data = new DataHelper;
+        return $data->recupData($prepare, $execute, Movie::class);
+    }
+
+    public static function recupProgramme($id){
+        $prepare = "SELECT * 
+                    FROM movie_has_programme 
+                    JOIN programme ON movie_has_programme.programme_id = programme.id
+                    WHERE movie_has_programme.movie_id = $id";
+        $execute = 
+        [
+            'id' => $id
+        ];
+        $data = new DataHelper;
+        return $data->recupData($prepare, $execute, Movie::class);
+    }
 
     public static function deleteMovie($slug, $id)
     {
