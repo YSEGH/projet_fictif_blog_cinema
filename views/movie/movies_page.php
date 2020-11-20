@@ -21,34 +21,37 @@ if($currentPage > $pages){
 $offset = PER_PAGE * ($currentPage - 1);
 $movies = Movie::getAllMovies(PER_PAGE, $offset);
 ?>
+<div class="row align-items-center p-3" style="height: auto;">
+  <div class="icon-site col-md-1 col-2" style="background-color: #42A1B4;"></div>
+  <h5 class="col-md-2 col-6 text-white my-auto">FESTIVAL INTERNATIONAL DU FILM <span class="font-weight-lighter">DE NIORT</span></h5>
+</div>
 
-<div class="row justify-content-center align-items-center mt-4" style="height: 11vh;">
+<div class="row justify-content-center align-items-center mt-4" style="height: auto;">
   <h3 class="text-white text-uppercase font-weight-light"><i class="fa fa-film p-1" aria-hidden="true"></i> Films</h3>
 </div>  
 
-<div class="movies-container container p-5">
+
 <?php foreach($movies as $movie) : ?>
-<div class="row justify-content-between align-items-center p-3" >
-    <div class="movies-container-photo col-md-4 col-sm-12" style="background-image: url(<?= $movie->photo ?>);"></div>
-    <div class="movies-container-body d-flex flex-column justify-content-between align-items-start px-4 pt-4 pb-2 col-md-6 col-sm-12 text-justify">
-        <a  href="<?= $router->generate('movie_page', ['slug' => $movie->slug, 'id' => $movie->id])?>"><h5 class="text-uppercase font-weight-light text-white"><?= $movie->name ?></h5></a>
-        <p class="font-weight-light text-white"><?= substr($movie->resume, 0, 150) ?></p>
-        <ul class="d-flex p-0">
-            <?php $categories = Movie::recupCategories($movie->id)?>
-            <?php foreach($categories as $category) : ?>
-                <li><a class="badge font-weight-light rounded-0 mr-1 text-white" style="background-color: #EF6962;" href=""><?= $category->name ?></a></li>
-            <?php endforeach ?>
-        </ul>
+    <div class="movies_page-item row flex-md-row flex-column justify-content-center align-items-center my-4">
+        <a href="<?= $router->generate('movie_page', ['slug' => $movie->slug, 'id' => $movie->id])?>" class="col-md-3 col-6 p-0">
+            <div class="col-12 movies_page-item-photo" style="background-image: url(<?= $movie->photo ?>);"></div>
+        </a>
+        <div class="movies_page-item-body col-md-5 col-6 d-flex flex-column justify-content-between align-items-md-start align-items-center px-4 pt-4 pb-2 text-justify">
+            <a  href="<?= $router->generate('movie_page', ['slug' => $movie->slug, 'id' => $movie->id])?>">
+                <h5 class="text-uppercase  text-center font-weight-light"><?= $movie->name ?></h5>
+            </a>
+            <p class="font-weight-light text-white"><?= substr($movie->resume, 0, 150) ?></p>
+            <ul class="d-flex justify-content-md-start justify-content-center p-0">
+                <?php $categories = Movie::recupCategories($movie->id)?>
+                <?php foreach($categories as $category) : ?>
+                    <li><a class="badge badge-warning text-white font-weight-light rounded-0 mr-1 text-white" href=""><?= $category->name ?></a></li>
+                <?php endforeach ?>
+            </ul>
+        </div>
     </div>
-    <div class="movies-container-buttons col-md-2 col-sm-12 my-auto d-flex flex-column justify-content-center align-items-center">
-        <a class="btn btn-dark font-weight-lighter rounded-0 m-1" href="<?= $router->generate('movie_page', ['slug' => $movie->slug, 'id' => $movie->id])?>">Infos</a> 
-        <a href="#myModal<?=$movie->id?>" class="btn btn-dark font-weight-lighter rounded-0 m-1" data-toggle="modal" >Séances</a>            
-    </div>
-</div>
-<?php require '../views/movie/seanceModal.php' ?>
 <?php endforeach ?>
-</div>
-<div class="section-movies-buttonsPage row d-flex justify-content-between my-5 w-100">
+
+<div class="movies_page-buttons row d-flex justify-content-between my-5">
     <?php if ($currentPage > 1) : ?>
         <?php $link = $router->generate('movies_page');?>
         <?php if ($currentPage > 2) $link .= '?page=' . ($currentPage - 1); ?>

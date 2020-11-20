@@ -33,8 +33,12 @@ $offset = PER_PAGE * ($currentPage - 1);
 
 $movies = Movie::getAllMovies(PER_PAGE, $offset);
 ?>
+<div class="row align-items-center p-3" style="height: auto;">
+  <div class="icon-site col-md-1 col-2" style="background-color: #42A1B4;"></div>
+  <h5 class="col-md-2 col-6 text-white my-auto">FESTIVAL INTERNATIONAL DU FILM <span class="font-weight-lighter">DE NIORT</span></h5>
+</div>
 
-<div class="row justify-content-between align-items-center mt-5 mb-3 p-5" style="height: 11vh;">
+<div class="row justify-content-between align-items-center mt-5 mb-3 p-5" style="min-height: auto;">
     <h3 class="text-white text-uppercase font-weight-light"><i class="fa fa-list" aria-hidden="true"></i> Liste des films</h3>
     <a href="<?= $router->generate('add_movie') ?>" class="btn btn-warning font-weight-lighter mt-auto mb-3 rounded-0 ">Ajouter un film</a>
 </div>

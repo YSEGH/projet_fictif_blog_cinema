@@ -21,14 +21,18 @@ if($currentPage > $pages){
 $offset = PER_PAGE * ($currentPage - 1);
 $posts = Post::getAllPosts(PER_PAGE, $offset);
 ?>
+<div class="row align-items-center p-3" style="height: auto;">
+  <div class="icon-site col-md-1 col-2" style="background-color: #42A1B4;"></div>
+  <h5 class="col-md-2 col-6 text-white my-auto">FESTIVAL INTERNATIONAL DU FILM <span class="font-weight-lighter">DE NIORT</span></h5>
+</div>
 
-<div class="row justify-content-center align-items-center mt-4" style="height: 11vh;">
+<div class="row justify-content-center align-items-center mt-4" style="height: auto;">
   <h3 class="text-white text-uppercase font-weight-light"><i class="fa fa-calendar p-1" aria-hidden="true"></i> Actualités</h3>
 </div>  
 
 <div class="cards-actualite row d-flex flex-wrap justify-content-center">
     <?php foreach($posts as $post) : ?> 
-        <a class="col-md-3 col-5 card-post-homepage px-0 m-1 mb-2" style="overflow: hidden;">
+        <a href="<?= $router->generate('post_page', ['slug' => $post->slug, 'id' => $post->id]) ?>" class="col-md-3 col-5 card-post-homepage px-0 m-1 mb-2" style="overflow: hidden;">
             <?php require dirname(__DIR__) .'/admin/homepage/post_card.php'?>
         </a>
     <?php endforeach ?>

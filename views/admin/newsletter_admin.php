@@ -4,8 +4,12 @@ if (!isset($_SESSION['auth'])) {
     header('Location: /');
 }
 ?>
+<div class="row align-items-center p-3" style="height: auto;">
+  <div class="icon-site col-md-1 col-2" style="background-color: #42A1B4;"></div>
+  <h5 class="col-md-2 col-6 text-white my-auto">FESTIVAL INTERNATIONAL DU FILM <span class="font-weight-lighter">DE NIORT</span></h5>
+</div>
 
-<div class="row justify-content-center align-items-center mt-5" style="height: 11vh;">
+<div class="row justify-content-center align-items-center mt-5" style="height: auto;">
     <h3 class="text-white text-uppercase font-weight-light"><i class="fa fa-envelope-o" aria-hidden="true"></i> Envoyer une newsletter</h3>
 </div>
 

@@ -37,9 +37,11 @@ $router
     ->post("/dashboard/movies_list/add_movie", 'admin/add/add_movie', 'add_movie')
 
     ->post("/dashboard/movies_list/update_category/[*:slug]-[i:id]", 'admin/update/update_category', 'update_category')
+    ->post("/dashboard/movies_list/update_program/[*:slug]-[i:id]", 'admin/update/update_program', 'update_program')
 
     ->get("/disconnect", 'admin/disconnect', 'disconnect')
 
+    ->get("/programme/[*:slug]", 'program', 'programme')
     ->get("/actualites", 'post/posts_page', 'posts_page')
     ->get("/actualites/[*:slug]-[i:id]", 'post/post_page', 'post_page')
 
