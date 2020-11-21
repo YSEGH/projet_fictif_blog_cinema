@@ -96,7 +96,7 @@ color: white;
 .photo-1{ 
 background-position: center;
 background-size: cover;
-min-height: 204px; 
+min-height: 243px; 
 max-width:440px;
 transition: .25s;
 }
@@ -107,8 +107,8 @@ transform: scale(1.05);
 .photo-2{
 background-position: center;
 background-size: cover;
-min-height: 204px; 
-min-width:404px; 
+min-height: 243px; 
+min-width:370px;
 max-width:440px;
 transition: .25s;
 }
@@ -119,8 +119,8 @@ transform: scale(1.05);
 .photo-3{
 background-position: center;
 background-size: cover;
-min-height: 204px; 
-min-width:404px; 
+min-height: 243px; 
+min-width:370px; 
 max-width:440px;
 transition: .25s;
 }
@@ -131,7 +131,7 @@ transform: scale(1.05);
 .photo-4{ 
 background-position: center;
 background-size: cover;
-min-height: 204px; 
+min-height: 243px; 
 max-width:440px;
 transition: .25s;
 }
@@ -200,21 +200,21 @@ color: white;
 /** MOVIES PAGE */
 .movies_page-item{
   overflow: hidden;
-  transition: .25s;
 }
-.movies_page-item:hover{
-transform: scale(1.02);
+.movies_page-item:hover .movies_page-item-photo{
+transform: scale(1.05);
 }
 .movies_page-item-photo{
  background-position:center;
  background-size: cover;
- min-height:15rem;
- max-height:15rem;
+ min-height:18rem;
+ max-height:18rem;
+   transition: .25s;
 /*  width: 30rem; */
 }
 .movies_page-item-body{
  background-color: #42A1B4; 
- min-height:15rem; 
+ min-height:18rem; 
  color: white;
 }
 .movies_page-item-body a  {
@@ -224,6 +224,7 @@ transform: scale(1.02);
 color: #222121;
 text-decoration: none;
 }
+
 /** MOVIE_PAGE */
 .movie_page-photo{
   background-position: center;

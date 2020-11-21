@@ -28,12 +28,15 @@ if($params['slug'] !== $movie->slug) {
             <ul class="d-flex p-0">
                 <?php $categories = Movie::recupCategories($movie->id) ?>
                 <?php foreach($categories as $category) : ?>
-                    <li><a class="badge badge-warning text-white font-weight-light rounded-0 mr-1" href=""><?= $category->name ?></a></li>
+                    <li><span class="badge badge-warning text-white font-weight-light rounded-0 mr-1" style="background-color: #EF6962;"><?= $category->name ?></span></li>
                 <?php endforeach ?>
             </ul>
         </div>
-        <h4 class="text-white font-weight-light ">Synopsis :</h4>
-        <p class="text-white font-weight-lighter "><?= $movie->resume ?></p>
+        <p class="text-white font-weight-lighter mb-3"><?= $movie->resume ?></p>
+        <p class="font-weight-lighter text-justify text-md-left text-center text-white my-1"><span class="font-weight-normal">Réalisateur : </span><?= $movie->realisator ?></p>
+        <p class="font-weight-lighter text-justify text-md-left text-center text-white my-1"><span class="font-weight-normal">Acteurs : </span><?= $movie->actor ?></p>
+        <p class="font-weight-lighter text-justify text-md-left text-center text-white my-1"><span class="font-weight-normal">Date de sortie : </span><?= $movie->release_date ?></p>
+
     </div>
     <div class="section-moviePage-backLink col-12 d-flex justify-content-end my-3">
         <a href="<?= $router->generate('movies_page')?>" class="btn btn-dark font-weight-lighter rounded-0 my-2 mx-auto" style="background-color: #EF6962;">Retour</a>

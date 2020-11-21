@@ -29,7 +29,7 @@ foreach ($seances as $key => $seance) {
     <div class="col-md-2 col-6 d-flex flex-column align-items-center justify-content-center">
         <a class="seances_movie-link col-12 m-1" href="<?= $router->generate('movie_page', ['slug' => $movie->slug, 'id' => $movie->movie_id]) ?>">
             <div class="seances_movie col-12 d-flex justify-content-end align-items-end p-0" style="background-image:url('<?= $movie->photo ?>');">
-                <h5 class="col-8 text-white text-center font-weight-normal m-0" style="background-color: black"><?= $movie->name ?></h5>
+                <h5 class="col-auto text-white text-center font-weight-normal m-0" style="background-color: RGBA(0, 0, 0, 0.85)"><?= $movie->name ?></h5>
             </div>
         </a>
         <a href="#reservationModal<?=$movie->movie_id?>" data-toggle="modal" class="btn btn-dark my-2 font-weight-lighter rounded-0 mx-auto" style="background-color: #EF6962;"><i class="fa fa-ticket" aria-hidden="true"></i></a>
@@ -47,7 +47,7 @@ foreach ($seances as $key => $seance) {
     <div class="col-md-2 col-6 d-flex flex-column align-items-center justify-content-center">
         <a class="seances_movie-link col-12 m-1" href="<?= $router->generate('movie_page', ['slug' => $movie->slug, 'id' => $movie->movie_id]) ?>">
             <div class="seances_movie col-12 d-flex justify-content-end align-items-end p-0" style="background-image:url('<?= $movie->photo ?>');">
-                <h5 class="col-8 text-white text-center font-weight-normal m-0" style="background-color: black"><?= $movie->name ?></h5>
+                <h5 class="col-auto text-white text-center font-weight-normal m-0" style="background-color: RGBA(0, 0, 0, 0.85)"><?= $movie->name ?></h5>
             </div>
         </a>
         <a href="#reservationModal<?=$movie->movie_id?>" data-toggle="modal" class="btn btn-dark my-2 font-weight-lighter rounded-0 mx-auto" style="background-color: #EF6962;"><i class="fa fa-ticket" aria-hidden="true"></i></a>
@@ -65,7 +65,7 @@ foreach ($seances as $key => $seance) {
     <div class="col-md-2 col-6 d-flex flex-column align-items-center justify-content-center">
         <a class="seances_movie-link col-12 m-1" href="<?= $router->generate('movie_page', ['slug' => $movie->slug, 'id' => $movie->movie_id]) ?>">
             <div class="seances_movie col-12 d-flex justify-content-end align-items-end p-0" style="background-image:url('<?= $movie->photo ?>');">
-                <h5 class="col-8 text-white text-center font-weight-normal m-0" style="background-color: black"><?= $movie->name ?></h5>
+                <h5 class="col-auto text-white text-center font-weight-normal m-0" style="background-color: RGBA(0, 0, 0, 0.85)"><?= $movie->name ?></h5>
             </div>
         </a>
         <a href="#reservationModal<?=$movie->movie_id?>" data-toggle="modal" class="btn btn-dark my-2 font-weight-lighter rounded-0 mx-auto" style="background-color: #EF6962;"><i class="fa fa-ticket" aria-hidden="true"></i></a>
@@ -83,7 +83,7 @@ foreach ($seances as $key => $seance) {
     <div class="col-md-2 col-6 d-flex flex-column align-items-center justify-content-center">
         <a class="seances_movie-link col-12 m-1" href="<?= $router->generate('movie_page', ['slug' => $movie->slug, 'id' => $movie->movie_id]) ?>">
             <div class="seances_movie col-12 d-flex justify-content-end align-items-end p-0" style="background-image:url('<?= $movie->photo ?>');">
-                <h5 class="col-8 text-white text-center font-weight-normal m-0" style="background-color: black"><?= $movie->name ?></h5>
+                <h5 class="col-auto text-white text-center font-weight-normal m-0" style="background-color: RGBA(0, 0, 0, 0.85)"><?= $movie->name ?></h5>
             </div>
         </a>
         <a href="#reservationModal<?=$movie->movie_id?>" data-toggle="modal" class="btn btn-dark my-2 font-weight-lighter rounded-0 mx-auto" style="background-color: #EF6962;"><i class="fa fa-ticket" aria-hidden="true"></i></a>

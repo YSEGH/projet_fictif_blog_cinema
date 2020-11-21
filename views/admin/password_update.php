@@ -1,21 +1,26 @@
 <?php
 use App\Classe\Data\DataHelper;
+use App\Classe\User\User;
+
 session_start();
 $data = new DataHelper;
 if (!empty($_POST)) {
-    if (isset($_POST['password_check']) && $_POST['password_check'] === $_SESSION['password']) {
-        $_SESSION['password_checked'] = 1;
+    if (isset($_POST['password_check'])){
+        if (User::passwordVerify($_POST['password_check'], $_SESSION['password'])) {
+            $_SESSION['password_checked'] = 1;
+        }
     }
     if (isset($_POST['password'])) {
         $_SESSION['password_checked'] = 1;
         $prepare = "UPDATE user SET password = :password WHERE username = :username";
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $execute =
         [
             'username' => $_SESSION['username'],
-            'password' => $_POST['password']
+            'password' => $password
         ];
         $new_password = $data->dataAction($prepare, $execute);
-        $_SESSION['password'] = $_POST['password'];
+        $_SESSION['password'] = $password;
         header('Location: ' . $router->generate('account'));
     }
 }
@@ -40,7 +45,7 @@ if (!empty($_POST)) {
         <?php if(isset($_SESSION['password_checked'])) : ?>
             <div class="form-group w-50 p-3">
                 <label class="text-white" for="password">Saisissez votre nouveau mot de passe : </label>
-                <input type="password" class="form-control rounded-0" name="password" value="<?= $user[0]->password ?>">
+                <input type="password" class="form-control rounded-0" name="password" value="">
             </div>
         <?php endif ?>
         <div class="d-flex justify-content-center m-3">

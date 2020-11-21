@@ -16,29 +16,33 @@ $movie_3 = Movie::getMovieHomepage(3)[0];
 $movie_4 = Movie::getMovieHomepage(4)[0];
 ?>
 
-<div class="row align-items-center p-3" style="height: auto;">
+<div class="row align-items-center p-3 mb-5" style="height: auto;">
   <div class="icon-site col-md-1 col-2" style="background-color: #42A1B4;"></div>
   <h5 class="col-md-2 col-6 text-white my-auto">FESTIVAL INTERNATIONAL DU FILM <span class="font-weight-lighter">DE NIORT</span></h5>
 </div>
 
-<div id="carousel" class=" carousel slide mt-3 pt-5 mx-auto" data-ride="carousel">
+<div id="carousel" class="carousel slide col-10 mt-5 mb-5 pt-5 mx-auto" data-ride="carousel" style="height: auto;">
   <div class="carousel-inner">
     <div class="carousel-item active">
-        <img src="http://localhost:8000/img/banniere/route1000*400.jpg" class="d-block w-100" alt="...">
+        <div class="d-flex justify-content-end align-items-end p-5" style="background-image: url(http://localhost:8000/img/route.jpg); background-position:center; background-size:cover; height:60vh;">
+          <div><h1 class="text-white font-weight-light text-uppercase p-3" style="background-color: RGBA(0, 0, 0, 0.85);">1ère édition</h1></div>
+        </div>
     </div>
     <div class="carousel-item">
-      <img src="http://localhost:8000/img/banniere/jardin1000*400.jpg" class="d-block w-100" alt="...">
+        <div class="d-flex justify-content-end align-items-end p-5" style="background-image: url(http://localhost:8000/img/droite.jpg); background-position:center; background-size:cover; height:60vh;">
+          <div><h1 class="text-white font-weight-light text-uppercase p-3" style="background-color: RGBA(0, 0, 0, 0.85);">Des films inédits</h1></div>
+        </div>
     </div>
     <div class="carousel-item">
-      <img src="http://localhost:8000/img/banniere/seule1000*400.jpg" class="d-block w-100" alt="...">
+        <div style="background-image: url(http://localhost:8000/img/tomate.jpg); background-position:center; background-size:cover; height:60vh;"></div>
     </div>
   </div>
 </div>
 
-<div class="row justify-content-center align-items-center mt-5" style="height: auto;">
+<div class="row justify-content-center align-items-center mt-5 pt-5" style="height: auto;">
   <h3 class="text-white text-uppercase font-weight-light"><i class=" fa fa-newspaper-o p-1" aria-hidden="true"></i> Actualités</h3>
 </div>
-<div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-center mb-5">
   <?php foreach($posts_homepage as $post) : ?>
     <a href="<?= $router->generate('post_page', ['slug' => $post->slug, 'id' => $post->id]) ?>" class="col-md-3 col-5 card-post-homepage px-0 m-1 mb-2" style="overflow: hidden;">
         <?php require 'admin/homepage/post_card.php'?>
@@ -46,10 +50,10 @@ $movie_4 = Movie::getMovieHomepage(4)[0];
   <?php endforeach ?>
 </div>
 
-<div class="row justify-content-center align-items-center mt-4" style="height: auto;">
+<div class="row justify-content-center align-items-center mt-5" style="height: auto;">
   <h3 class="text-white text-uppercase font-weight-light"><i class="fa fa-calendar p-1" aria-hidden="true"></i> Programme</h3>
 </div>  
-<div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-center mb-5">
   <?php for ($i=12; $i < 17; $i++) : ?>
     <a href="<?= $router->generate('programme', ['slug' => 20201012 + ($i - 12) ]) ?>" class="col-md-2 col-sm-3 col-5 link-homepage-program my-2 mx-2 d-flex justify-content-center align-items-center" style="max-height:10rem; min-height:10rem;max-width:10rem; min-width:10rem;">
       <h3><?= $i ?> - Oct</h3>
@@ -60,13 +64,17 @@ $movie_4 = Movie::getMovieHomepage(4)[0];
 <div class="row justify-content-center align-items-center mt-5" style="height: auto;">
   <h3 class="text-white text-uppercase font-weight-light"><i class="fa fa-film p-1" aria-hidden="true"></i> Films à l'affiche</h3>
 </div>  
-<div class="photo-festival row d-flex justify-content-center m-0" style="min-height:80vh;">
-    <a href="<?= $router->generate('movie_page', ['slug' => $movie_1->slug, 'id' => $movie_1->id]) ?>" class="p-3 col-md-3 col-12 photo-1 bg-primary d-flex justify-content-start align-items-end" style="max-width: 440px; background-image:url('<?= $movie_1->photo ?>');"><h5 class="col-auto p-3 text-white text-center font-weight-normal" style="background-color: #131313;"><?= $movie_1->name ?> <span class="font-weight-lighter">- <?= $movie_1->realisator ?></span></h5></a>
-    <div class="col-md-4 col-12 d-flex flex-column justify-content-center align-items-center">    
-        <a href="<?= $router->generate('movie_page', ['slug' => $movie_2->slug, 'id' => $movie_2->id]) ?>" class="p-3 h-50 w-100 photo-2 bg-warning d-flex justify-content-start align-items-start" style="background-image:url('<?= $movie_2->photo ?>');"><h5 class="col-6 p-3 text-white text-center font-weight-normal" style="background-color: #131313;"><?= $movie_2->name ?> <br> <span class="font-weight-lighter">- <br> <?= $movie_2->realisator ?></span></h5></a>
-        <a href="<?= $router->generate('movie_page', ['slug' => $movie_3->slug, 'id' => $movie_3->id]) ?>" class="p-3 h-50 w-100 photo-3 bg-danger d-flex justify-content-end align-items-end" style="background-image:url('<?= $movie_3->photo ?>');"><h5 class="col-auto p-3 text-white text-center font-weight-normal" style="background-color: #131313;"><?= $movie_3->name ?> <br>  <span class="font-weight-lighter">-  <br> <?= $movie_3->realisator ?></span></h5></a>
+<div class="photo-festival row d-flex justify-content-center m-0 mb-5" style="min-height:80vh;">
+    <div class="col-md-3 col-12 p-0" style="overflow:hidden;">
+      <a href="<?= $router->generate('movie_page', ['slug' => $movie_1->slug, 'id' => $movie_1->id]) ?>" class="col-md-3 col-12 p-3 photo-1 bg-primary d-flex justify-content-start align-items-end h-100" style="max-width: 440px; background-image:url('<?= $movie_1->photo ?>');"><h5 class="col-auto py-2 text-white text-center font-weight-light" style="background-color: RGBA(0, 0, 0, 0.85);"><?= $movie_1->name ?> <br> <span class="font-weight-lighter">- <br> <?= $movie_1->realisator ?></span></h5></a>
     </div>
-    <a href="<?= $router->generate('movie_page', ['slug' => $movie_4->slug, 'id' => $movie_4->id]) ?>" class="p-3 col-md-3 col-12 photo-4 bg-success d-flex justify-content-end align-items-start" style="max-width: 440px; background-image:url('<?= $movie_4->photo ?>');"><h5 class="col-6 p-3 text-white text-center font-weight-normal" style="background-color: #131313;"> <?= $movie_4->name ?> <br> <span class="font-weight-lighter">-  <br> <?= $movie_4->realisator ?></span></h5></a>
+    <div class="col-md-4 col-12 d-flex flex-column justify-content-between align-items-center">    
+        <a href="<?= $router->generate('movie_page', ['slug' => $movie_2->slug, 'id' => $movie_2->id]) ?>" class="p-3 mb-1 h-50 w-100 photo-2 bg-warning d-flex justify-content-start align-items-start" style="background-image:url('<?= $movie_2->photo ?>');"><h5 class="col-auto py-2 text-white text-center font-weight-light" style="background-color: RGBA(0, 0, 0, 0.85);"><?= $movie_2->name ?> <br> <span class="font-weight-lighter">- <br> <?= $movie_2->realisator ?></span></h5></a>
+        <a href="<?= $router->generate('movie_page', ['slug' => $movie_3->slug, 'id' => $movie_3->id]) ?>" class="p-3 mt-1 h-50 w-100 photo-3 bg-danger d-flex justify-content-end align-items-end" style="background-image:url('<?= $movie_3->photo ?>');"><h5 class="col-auto py-2 text-white text-center font-weight-light" style="background-color: RGBA(0, 0, 0, 0.85);"><?= $movie_3->name ?> <br>  <span class="font-weight-lighter">-  <br> <?= $movie_3->realisator ?></span></h5></a>
+    </div>
+    <div class="col-md-3 col-12 p-0" style="overflow:hidden;">
+      <a href="<?= $router->generate('movie_page', ['slug' => $movie_4->slug, 'id' => $movie_4->id]) ?>" class="p-3 col-md-3 col-12 photo-4 bg-success d-flex justify-content-end align-items-start h-100" style="max-width: 440px; background-image:url('<?= $movie_4->photo ?>');"><h5 class="col-auto py-2 text-white text-center font-weight-light" style="background-color: RGBA(0, 0, 0, 0.85);"> <?= $movie_4->name ?> <br> <span class="font-weight-lighter">-  <br> <?= $movie_4->realisator ?></span></h5></a>
+    </div>
 </div>
 
 <div class="row justify-content-center align-items-center mt-5" >

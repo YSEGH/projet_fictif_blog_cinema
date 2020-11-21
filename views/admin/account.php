@@ -14,7 +14,7 @@ if (!empty($_POST)) {
 }
 
 $auth = new User;
-$user = $auth->getAuth($_SESSION['username'], $_SESSION['password']);
+$user = $auth->recupUserInfos($_SESSION['username'], $_SESSION['id']);
 
 ?>
 <div class="row align-items-center p-3" style="height: auto;">
@@ -42,7 +42,7 @@ $user = $auth->getAuth($_SESSION['username'], $_SESSION['password']);
         </div>
         <div class="form-group col-md-5 col-sm-12 ">
             <label class="text-white" for="">Mot de passe : </label>
-            <input type="password" class="form-control rounded-0" name="" value="<?= $user[0]->password ?>" disabled>
+            <input type="password" class="form-control rounded-0" name="" value="<?= substr($user[0]->password, 0, 6) ?>" disabled>
         </div>
         <div class="d-flex flex-column justify-content-center m-3">
             <a href="<?= $router->generate('password_update')?>" class=" align-self-start btn btn-secondary font-weight-lighter rounded-0 mt-auto my-2 mx-1">Modifier mon mot de passe</a>  

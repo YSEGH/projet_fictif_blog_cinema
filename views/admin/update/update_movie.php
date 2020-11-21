@@ -67,13 +67,13 @@ $categories = $movie->recupCategories($movie->id);
                 <div>
                     <div>
                         <?php foreach($categories as $category) : ?>
-                            <span type="text" class="badge badge-warning text-white font-weight-light rounded-0 mr-1 m-auto"><?= $category->name ?></span>
+                            <span type="text" class="badge badge-warning text-white font-weight-light rounded-0 mr-1" style="background-color: #EF6962;"><?= $category->name ?></span>
                         <?php endforeach ?>     
                     </div>
-                    <a href="<?= $router->generate('update_category', ['slug' => $movie->slug, 'id' => $movie->id])?>" class="btn btn-light border font-weight-lighter rounded-0 mt-3 mx-1" >Catégories</a>
+                    <a href="<?= $router->generate('update_category', ['slug' => $movie->slug, 'id' => $movie->id])?>" class="btn btn-dark font-weight-lighter rounded-0 mt-3 mx-1" >Catégories</a>
                 </div> 
                 <div>
-                    <a href="<?= $router->generate('update_program', ['slug' => $movie->slug, 'id' => $movie->id])?>" class="btn btn-light border font-weight-lighter rounded-0 mt-3 mx-1" >Séances</a>
+                    <a href="<?= $router->generate('update_program', ['slug' => $movie->slug, 'id' => $movie->id])?>" class="btn btn-dark font-weight-lighter rounded-0 mt-3 mx-1" >Séances</a>
                 </div>   
             </div> 
         </div>   

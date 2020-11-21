@@ -20,6 +20,8 @@ if($currentPage > $pages){
 }
 $offset = PER_PAGE * ($currentPage - 1);
 $movies = Movie::getAllMovies(PER_PAGE, $offset);
+
+
 ?>
 <div class="row align-items-center p-3" style="height: auto;">
   <div class="icon-site col-md-1 col-2" style="background-color: #42A1B4;"></div>
@@ -30,26 +32,13 @@ $movies = Movie::getAllMovies(PER_PAGE, $offset);
   <h3 class="text-white text-uppercase font-weight-light"><i class="fa fa-film p-1" aria-hidden="true"></i> Films</h3>
 </div>  
 
-
-<?php foreach($movies as $movie) : ?>
-    <div class="movies_page-item row flex-md-row flex-column justify-content-center align-items-center my-4">
-        <a href="<?= $router->generate('movie_page', ['slug' => $movie->slug, 'id' => $movie->id])?>" class="col-md-3 col-6 p-0">
-            <div class="col-12 movies_page-item-photo" style="background-image: url(<?= $movie->photo ?>);"></div>
+<div class="cards-actualite row d-flex flex-wrap justify-content-center">
+    <?php foreach ($movies as $movie) : ?>
+        <a href="<?= $router->generate('movie_page', ['slug' => $movie->slug, 'id' => $movie->id]) ?>" class="movies_page-item d-flex justify-content-center col-md-10 col-5 card-post-homepage px-0 m-1 mb-2" style="overflow: hidden;">
+            <?php require dirname(__DIR__) .'/admin/homepage/movie_card.php'?>
         </a>
-        <div class="movies_page-item-body col-md-5 col-6 d-flex flex-column justify-content-between align-items-md-start align-items-center px-4 pt-4 pb-2 text-justify">
-            <a  href="<?= $router->generate('movie_page', ['slug' => $movie->slug, 'id' => $movie->id])?>">
-                <h5 class="text-uppercase  text-center font-weight-light"><?= $movie->name ?></h5>
-            </a>
-            <p class="font-weight-light text-white"><?= substr($movie->resume, 0, 150) ?></p>
-            <ul class="d-flex justify-content-md-start justify-content-center p-0">
-                <?php $categories = Movie::recupCategories($movie->id)?>
-                <?php foreach($categories as $category) : ?>
-                    <li><a class="badge badge-warning text-white font-weight-light rounded-0 mr-1 text-white" href=""><?= $category->name ?></a></li>
-                <?php endforeach ?>
-            </ul>
-        </div>
-    </div>
-<?php endforeach ?>
+    <?php endforeach ?>
+</div>
 
 <div class="movies_page-buttons row d-flex justify-content-between my-5">
     <?php if ($currentPage > 1) : ?>
