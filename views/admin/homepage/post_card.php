@@ -2,7 +2,7 @@
 <div class="card-post-body card-body col-12 my-4 m-auto text-center d-flex flex-column align-items-center justify-content-around">
     <h6 class="card-post-title text-uppercase font-weight-normal text-white m-1"><?= $post->title ?></h6>
     <div class="card-post-span"></div>
-    <p class="card-post-content text-justify text-center text-white m-1"><?= substr($post->content, 0, 60) ?></p>
+    <p class="card-post-content text-justify text-white m-1"><?= substr($post->content, 0, 100) ?></p>
     <div class="card-post-span"></div>
     <p class="card-post-date font-weight-lighter text-white m-0"><?= $post->getCreatedAt()->format('d F Y') ?></p>
 </div>

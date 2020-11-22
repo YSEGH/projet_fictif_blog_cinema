@@ -30,9 +30,9 @@ $posts = Post::getAllPosts(PER_PAGE, $offset);
   <h3 class="text-white text-uppercase font-weight-light"><i class="fa fa-calendar p-1" aria-hidden="true"></i> Actualités</h3>
 </div>  
 
-<div class="cards-actualite row d-flex flex-wrap justify-content-center">
+<div class="cards-actualite row d-flex flex-wrap justify-content-center p-3">
     <?php foreach($posts as $post) : ?> 
-        <a href="<?= $router->generate('post_page', ['slug' => $post->slug, 'id' => $post->id]) ?>" class="col-md-3 col-5 card-post-homepage px-0 m-1 mb-2" style="overflow: hidden;">
+        <a href="<?= $router->generate('post_page', ['slug' => $post->slug, 'id' => $post->id]) ?>" class="col-md-3 col-12 card-post-homepage px-0 m-1 mb-2" style="overflow: hidden;">
             <?php require dirname(__DIR__) .'/admin/homepage/post_card.php'?>
         </a>
     <?php endforeach ?>

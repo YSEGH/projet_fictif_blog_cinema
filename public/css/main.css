@@ -63,6 +63,7 @@ margin: 10px 0;
 
 /** BANNIERE */
 
+
 /** HOMEPAGE PROGRAM */
 
 .link-homepage-program{
@@ -173,11 +174,13 @@ transform: scale(1.25);
  background-color: #42A1B4;
  height: 12rem;
  max-height: 16rem;
+
 }
 
 .card-post-content{
 font-size: small;
 font-weight: lighter;
+ overflow: hidden;
 }
 .card-post-date{
 font-size: medium;

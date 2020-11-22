@@ -38,12 +38,12 @@ $movies = Movie::getAllMovies(PER_PAGE, $offset);
   <h5 class="col-md-2 col-6 text-white my-auto">FESTIVAL INTERNATIONAL DU FILM <span class="font-weight-lighter">DE NIORT</span></h5>
 </div>
 
-<div class="row justify-content-between align-items-center mt-5 mb-3 p-5" style="min-height: auto;">
-    <h3 class="text-white text-uppercase font-weight-light"><i class="fa fa-list" aria-hidden="true"></i> Liste des films</h3>
-    <a href="<?= $router->generate('add_movie') ?>" class="btn btn-warning font-weight-lighter mt-auto mb-3 rounded-0 ">Ajouter un film</a>
+<div class="row justify-content-between align-items-center p-5" style="min-height: auto;">
+    <h3 class="col-md-8 col-12 mb-md-0 mb-3 text-white text-md-left text-center text-uppercase font-weight-light"><i class="fa fa-list" aria-hidden="true"></i> Liste des films</h3>
+    <a href="<?= $router->generate('add_movie') ?>" class="col-md-2 col-12 btn btn-warning font-weight-lighter mt-auto rounded-0 ">Ajouter un film</a>
 </div>
     
-<table class="table table-striped m-auto p-5" style="width: 80vw;">
+<table class="table table-striped m-auto px-5" style="width: 80vw;">
     <thead>
         <tr class="text-left">
             <th scope="col" class="col-auto text-left text-white">ID</th>

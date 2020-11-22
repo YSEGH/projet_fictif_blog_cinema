@@ -44,7 +44,7 @@ $movie_4 = Movie::getMovieHomepage(4)[0];
 
 <!-- RUBRIQUE POST -->
 <div class="row d-flex flex-column justify-content-center align-items-center mt-5">
-    <h3 class="mb-3 text-white font-weight-light">1. Gestion des articles</h3>
+    <h3 class="mb-3 text-white font-weight-lighter">1. Gestion des articles</h3>
     <div class="row d-flex justify-content-center align-items-center px-5">
         <?php foreach($posts_homepage as $post) : ?>
             <div class="card-home col-md-2 col-sm-5 mb-3">
@@ -54,8 +54,8 @@ $movie_4 = Movie::getMovieHomepage(4)[0];
     </div>        
 </div>
 <div class="row d-flex flex-column justify-content-center align-items-center">
-    <h5 class="col-8 mt-4 mb-3 text-uppercase text-white text-center font-weight-light">Selectionnez les articles que vous souhaitez voir apparaitre sur la page d'accueil</h5>
-    <p class="col-8 text-white text-center font-weight-bold">Attention, vous ne pouvez pas ajouter plus de 3 articles</p>
+    <h5 class="col-md-8 col-11 mt-4 mb-3 text-uppercase text-white text-center font-weight-light">Selectionnez les articles que vous souhaitez voir apparaitre sur la page d'accueil</h5>
+    <p class="col-md-8 col-11 text-danger text-center font-weight-bold">Attention, vous ne pouvez pas ajouter plus de 6 articles.</p>
     <?php if($error_post) : ?>
         <div class="alert alert-danger"><?= $error_post ?></div>
     <?php endif ?>
@@ -101,19 +101,19 @@ $movie_4 = Movie::getMovieHomepage(4)[0];
 
 <!-- RUBRIQUE FILMS -->
 <div class="row d-flex flex-column justify-content-center align-items-center mt-5">
-    <h3 class="mb-3 text-white font-weight-light">2. Gestion des films</h3>
+    <h3 class="mb-3 text-white font-weight-lighter">2. Gestion des films</h3>
 </div>
 
 <div class="photo-festival row d-flex justify-content-center m-0" style="min-height:80vh; ">
     <div class="p-3 col-md-3 col-12 photo-1 bg-primary d-flex flex-column justify-content-end align-items-start" style="max-width: 440px; background-image:url('<?= $movie_1->photo ?>');"><div class="bg-warning d-flex align-items-center justify-content-center m-auto" style="height:3rem; width: 3rem;"><h2 class="text-white m-auto">1</h2></div><h5 class="col-auto p-3 text-white text-center font-weight-normal" style="background-color: RGBA(0, 0, 0, 0.85);"><?= $movie_1->name ?> <br> <span class="font-weight-lighter">- <br> <?= $movie_1->realisator ?></span></h5></div>
     <div class="col-md-5 col-12 d-flex flex-column justify-content-center align-items-center">    
-        <div class="p-3 h-50 w-100 photo-2 bg-warning d-flex justify-content-start align-items-start" style="background-image:url('<?= $movie_2->photo ?>');"><div class="bg-warning d-flex align-items-center justify-content-center m-auto" style="height:3rem; width: 3rem;"><h2 class="text-white m-auto">2</h2></div><h5 class="col-6 p-3 text-white text-center font-weight-normal" style="background-color: RGBA(0, 0, 0, 0.85);"><?= $movie_2->name ?> <br> <span class="font-weight-lighter">- <br> <?= $movie_2->realisator ?></span></h5></div>
-        <div class="p-3 h-50 w-100 photo-3 bg-danger d-flex justify-content-end align-items-end" style="background-image:url('<?= $movie_3->photo ?>');"><div class="bg-warning d-flex align-items-center justify-content-center m-auto" style="height:3rem; width: 3rem;"><h2 class="text-white m-auto">3</h2></div><h5 class="col-auto p-3 text-white text-center font-weight-normal" style="background-color: RGBA(0, 0, 0, 0.85);"><?= $movie_3->name ?> <br>  <span class="font-weight-lighter">-  <br> <?= $movie_3->realisator ?></span></h5></div>
+        <div class="p-3 h-50 w-100 photo-2 bg-warning d-flex flex-column justify-content-start align-items-start" style="background-image:url('<?= $movie_2->photo ?>');"><div class="bg-warning d-flex align-items-center justify-content-center m-auto" style="height:3rem; width: 3rem;"><h2 class="text-white m-auto">2</h2></div><h5 class="col-6 p-3 text-white text-center font-weight-normal" style="background-color: RGBA(0, 0, 0, 0.85);"><?= $movie_2->name ?> <br> <span class="font-weight-lighter">- <br> <?= $movie_2->realisator ?></span></h5></div>
+        <div class="p-3 h-50 w-100 photo-3 bg-danger d-flex flex-column justify-content-end align-items-end" style="background-image:url('<?= $movie_3->photo ?>');"><div class="bg-warning d-flex align-items-center justify-content-center m-auto" style="height:3rem; width: 3rem;"><h2 class="text-white m-auto">3</h2></div><h5 class="col-auto p-3 text-white text-center font-weight-normal" style="background-color: RGBA(0, 0, 0, 0.85);"><?= $movie_3->name ?> <br>  <span class="font-weight-lighter">-  <br> <?= $movie_3->realisator ?></span></h5></div>
     </div>
-    <div class="p-3 col-md-3 col-12 photo-4 bg-success d-flex justify-content-end align-items-start" style="max-width: 440px; background-image:url('<?= $movie_4->photo ?>');"><div class="bg-warning d-flex align-items-center justify-content-center m-auto" style="height:3rem; width: 3rem;"><h2 class="text-white m-auto">4</h2></div><h5 class="col-6 p-3 text-white text-center font-weight-normal" style="background-color: RGBA(0, 0, 0, 0.85);"> <?= $movie_4->name ?> <br> <span class="font-weight-lighter">-  <br> <?= $movie_4->realisator ?></span></h5></div>
+    <div class="p-3 col-md-4 col-12 photo-4 bg-success d-flex flex-column justify-content-end align-items-start" style="max-width: 440px; background-image:url('<?= $movie_4->photo ?>');"><div class="bg-warning d-flex align-items-center justify-content-center m-auto" style="height:3rem; width: 3rem;"><h2 class="text-white m-auto">4</h2></div><h5 class="col-4 p-3 text-white text-center font-weight-normal" style="background-color: RGBA(0, 0, 0, 0.85);"> <?= $movie_4->name ?> <br> <span class="font-weight-lighter">-  <br> <?= $movie_4->realisator ?></span></h5></div>
 </div>
-<div class="row d-flex flex-column justify-content-center align-items-center">
-    <h5 class="col-8 mt-4 mb-3 text-uppercase text-white text-center font-weight-light">Selectionnez les films que vous souhaitez voir apparaitre sur la page d'accueil</h5>
+<div class="row d-flex flex-column justify-content-center align-items-center mt-5">
+    <h5 class="col-md-8 col-11 mt-4 mb-3 text-uppercase text-white text-center font-weight-light">Selectionnez les films que vous souhaitez voir apparaitre sur la page d'accueil.</h5>
     <div class="col-md-12 col-12 mt-3 mb-5 d-flex justify-content-center" style="max-height: 20rem; overflow-y:scroll;">
         <table class="table table-striped text-center table-responsive" style="width: 80vw;">
             <thead>

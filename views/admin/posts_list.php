@@ -36,12 +36,12 @@ $posts = Post::getAllPosts(PER_PAGE, $offset);
   <h5 class="col-md-2 col-6 text-white my-auto">FESTIVAL INTERNATIONAL DU FILM <span class="font-weight-lighter">DE NIORT</span></h5>
 </div>
 
-<div class="row justify-content-between align-items-center mt-5 mb-3 p-5" style="min-height: auto;">
-    <h3 class="col-md-8 col-4 text-white text-uppercase font-weight-light"><i class="fa fa-list" aria-hidden="true"></i> Liste des articles</h3>
-    <a href="<?= $router->generate('add_post') ?>" class="btn btn-warning font-weight-lighter mt-auto  mb-3 rounded-0 ">Ajouter un article</a>
+<div class="row justify-content-between align-items-center p-5" style="min-height: auto;">
+    <h3 class="col-md-8 col-12 mb-md-0 mb-3 text-white text-md-left text-center text-uppercase font-weight-light"><i class="fa fa-list" aria-hidden="true"></i> Liste des articles</h3>
+    <a href="<?= $router->generate('add_post') ?>" class="col-md-2 col-12 btn btn-warning font-weight-lighter mt-auto rounded-0 ">Ajouter un article</a>
 </div>
     
-<table class="table table-striped m-auto p-5" style="width:80vw;">
+<table class="table table-striped m-auto px-5" style="width:80vw;">
     <thead>
         <tr>
             <th scope="col" class="col-auto text-left text-white">ID</th>

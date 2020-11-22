@@ -7,8 +7,8 @@
   <h3 class="text-white text-uppercase font-weight-light"><i class="fa fa-address-book" aria-hidden="true"></i> Nous contacter</h3>
 </div>
 
-<div class="row justify-content-center align-items-center">
-    <h5 class="text-white font-weight-light">Pour nous contacter, merci de remplir les champs situés ci-dessous. Nous vous répondrons par mail, à l'adresse saisie.</h5>
+<div class="row justify-content-center align-items-center py-2 px-4">
+    <h5 class="text-white text-center font-weight-light">Pour nous contacter, merci de remplir les champs situés ci-dessous. Nous vous répondrons par mail, à l'adresse saisie.</h5>
 </div>
 <div class="d-flex justify-content-center row pt-3">
     <form action="" method="POST" class="col-md-8 col-sm-12 pt-3">

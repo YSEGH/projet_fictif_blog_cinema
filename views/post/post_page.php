@@ -21,7 +21,7 @@ if($params['slug'] !== $post->slug) {
 
 
 
-<div class="row justify-content-center px-5">
+<div class="row justify-content-center px-3">
     <div class="post_page-infos col-md-3 col-12 p-2" style="height: auto;">
         <div class="post_page-photo bg-dark" style="height: 10rem; background-image:url(<?= $post->photo ?>)"></div>
         <p class="text-md-left text-center mt-4 text-white">Par <?= $post->author ?></p>

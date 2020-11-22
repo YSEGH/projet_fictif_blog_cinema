@@ -34,11 +34,11 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
   <h3 class="text-white text-uppercase font-weight-light"><i class="fa fa-key" aria-hidden="true"></i> Connexion</span></h3>
 </div>
 
-<div class="container form-container d-flex flex-column justify-content-center align-items-center p-5">
+<div class="row form-container d-flex flex-column justify-content-center align-items-center ">
     <?php if ($error) : ?>
         <div class="alert alert-danger"><?= $error ?></div>
     <?php endif ?>
-    <form action="" method="POST" class="d-flex flex-column justify-content-center p-5">
+    <form action="" method="POST" class="col-md-3 col-12 d-flex flex-column justify-content-center p-5">
         <div class="form-group">
             <input class="form-control rounded-0" type="text" name="username" placeholder="Nom d'utilisateur">
         </div>

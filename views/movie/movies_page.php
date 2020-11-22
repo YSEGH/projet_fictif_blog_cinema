@@ -32,9 +32,9 @@ $movies = Movie::getAllMovies(PER_PAGE, $offset);
   <h3 class="text-white text-uppercase font-weight-light"><i class="fa fa-film p-1" aria-hidden="true"></i> Films</h3>
 </div>  
 
-<div class="cards-actualite row d-flex flex-wrap justify-content-center">
+<div class="cards-actualite row d-flex flex-wrap justify-content-center p-3">
     <?php foreach ($movies as $movie) : ?>
-        <a href="<?= $router->generate('movie_page', ['slug' => $movie->slug, 'id' => $movie->id]) ?>" class="movies_page-item d-flex justify-content-center col-md-10 col-5 card-post-homepage px-0 m-1 mb-2" style="overflow: hidden;">
+        <a href="<?= $router->generate('movie_page', ['slug' => $movie->slug, 'id' => $movie->id]) ?>" class="movies_page-item d-flex flex-md-row flex-column justify-content-center col-md-10 col-12 card-post-homepage px-0 m-1 mb-2" style="overflow: hidden;">
             <?php require dirname(__DIR__) .'/admin/homepage/movie_card.php'?>
         </a>
     <?php endforeach ?>
